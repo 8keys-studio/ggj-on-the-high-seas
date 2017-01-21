@@ -1,0 +1,104 @@
+AnswerIntent the answer is {Answer}
+AnswerIntent my answer is {Answer}
+AnswerIntent is it {Answer}
+AnswerIntent {Answer} is my answer
+AnswerOnlyIntent {Answer}
+
+AMAZON.StartOverIntent start game
+AMAZON.StartOverIntent new game
+AMAZON.StartOverIntent start
+AMAZON.StartOverIntent start new game
+
+DontKnowIntent i don't know
+DontKnowIntent don't know
+DontKnowIntent skip
+DontKnowIntent i don't know that
+DontKnowIntent who knows
+DontKnowIntent i don't know this question
+DontKnowIntent i don't know that one
+DontKnowIntent dunno
+
+NorthIntent north
+NorthIntent go north
+NorthIntent go to the north
+NorthIntent go northward
+NorthIntent go towards the north
+NorthIntent northern
+NorthIntent north east
+NorthIntent north west
+
+SouthIntent south
+SouthIntent go south 
+SouthIntent go to the south
+SouthIntent go towards the south
+SouthIntent southern
+SouthIntent south east
+SouthIntent south west
+
+EastIntent east
+EastIntent go east
+EastIntent go to the east
+EastIntent go towards the east
+EastIntent eastern
+
+WestIntent west
+WestIntent go west
+WestIntent go to the west
+WestIntent go towards the west
+WestIntent western
+
+BowIntent bow
+BowIntent the bow
+BowIntent the front of the ship
+BowIntent fore
+BowIntent the fore of the ship
+
+SternIntent stern
+SternIntent the stern
+SternIntent aft
+SternIntent the aft
+SternIntent back of the ship
+SternIntent the back of the ship
+SternIntent the rear 
+SternIntent the rear of the ship
+
+PortIntent port
+PortIntent the port
+PortIntent port side
+PortIntent portside
+PortIntent port of the ship
+PortIntent left
+PortIntent left side
+PortIntent the left
+PortIntent left side of the ship
+PortIntent the left side
+PortIntent the left side of the ship
+
+StarboardIntent starboard
+StarboardIntent star board
+StarboardIntent starboard side
+StarboardIntent star board side
+StarboardIntent star board of the ship
+StarboardIntent right
+StarboardIntent right side
+StarboardIntent right side of the ship
+StarboardIntent the right
+StarboardIntent the right side
+StarboardIntent the right side of the ship
+
+AttackIntent attack
+AttackIntent fire
+AttackIntent fire cannon
+AttackIntent fire cannons
+AttackIntent fire the cannons
+AttackIntent cannons
+
+DefendIntent defend
+DefendIntent defense
+DefendIntent brace
+DefendIntent take cover
+
+EvadeIntent evade
+EvadeIntent evasive maneuver
+EvadeIntent evasive maneuvers
+EvadeIntent gang way
