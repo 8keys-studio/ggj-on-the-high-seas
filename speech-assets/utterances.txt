@@ -216,3 +216,6 @@ TakedownIntent take them down once and for all
 TakedownIntent lets take them down
 TakedownIntent I want to take them down
 TakedownIntent we should take them down
+
+SurrenderIntent surrender
+
