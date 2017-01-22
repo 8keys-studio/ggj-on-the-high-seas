@@ -10,6 +10,7 @@ var shipHP = 0;
 var stormAction1 = "";
 var stormAction2 = "";
 var notUnderstood = "I'm sorry, captain. I didn't understand your orders. Let me try again. ";
+var notUnderstoodArray = ["Come again, Captain? ", "Speak up, Captain, the waves are loud. ", "Seriously, I didn’t get that. "];
 var lastQuestion = "Is the Xebec your ship, a masterful balance of speed and strength? Popluar for a  cargo mission such as ours?";
 
 exports.handler = function (event, context) {
@@ -274,8 +275,9 @@ function handleEvent0(intentName, session, callback) { //Xebec?
     }
 
     else {
+        var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstood + lastQuestion, "", false));
+            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 }
 
@@ -304,9 +306,10 @@ function handleEvent1(intentName, session, callback) { //brigantine?
             buildSpeechletResponse(CARD_TITLE, "So she's the galleon, massive and built for battle?","", false));
     }
 
-        else {
+    else {
+        var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstood + lastQuestion, "", false));
+            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 }
 
@@ -337,9 +340,10 @@ function handleEvent2(intentName,session,callback) { //galleon?
                 "Is it the Xebec, a masterful balance of speed and strength? Popluar for a  cargo mission such as ours?" ,"", false));
     }
 
-        else {
+    else {
+        var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstood + lastQuestion, "", false));
+            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
@@ -361,9 +365,10 @@ function handleEvent3(intentName,session,callback) { //We have a bit of extra ti
             "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" ,"", false));
     }
 
-        else {
+    else {
+        var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstood + lastQuestion, "", false));
+            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 
@@ -387,9 +392,10 @@ function handleEvent4(intentName,session,callback){ //"Perhaps sailing master Ca
             buildSpeechletResponse(CARD_TITLE, "Then maybe our boatswain, Flockheart." ,"", false));
     }
 
-        else {
+    else {
+        var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstood + lastQuestion, "", false));
+            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
@@ -411,9 +417,10 @@ function handleEvent5(intentName,session,callback){ //"Then maybe our boatswain,
         callback(session.attributes,
             buildSpeechletResponse(CARD_TITLE, "Then surely Gunner Master Bramley?" ,"", false));
     }
-            else {
+        else {
+        var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstood + lastQuestion, "", false));
+            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
@@ -436,9 +443,10 @@ function handleEvent6(intentName,session,callback){ //"Then surely Gunner Master
             buildSpeechletResponse(CARD_TITLE, "Aye, then let us dally no more. Captain to the deck! <break time='0.5s'/>" +
             "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" ,"", false));
     }
-                else {
+            else {
+        var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstood + lastQuestion, "", false));
+            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
@@ -494,9 +502,10 @@ function handleEvent8(intentName,session,callback){ // ...getting to know the cr
             buildSpeechletResponse(CARD_TITLE, "Very well then. I'll be in my bunk should you need me. Good evening to you. [WAVE SOUND SCENE CHANGE]" ,"", false));
     }
 
-        else {
+    else {
+        var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstood + lastQuestion, "", false));
+            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
@@ -518,9 +527,10 @@ function handleEvent9(intentName,session,callback){ //Sailing Master Carrington 
         callback(session.attributes,
             buildSpeechletResponse(CARD_TITLE, "What do you say to our boatswain Flockheart. Would you like to speak with him?" ,"", false));
     }
-            else {
+        else {
+        var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstood + lastQuestion, "", false));
+            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
@@ -542,9 +552,10 @@ function handleEvent10(intentName,session,callback){ //What do you say to our bo
         callback(session.attributes,
             buildSpeechletResponse(CARD_TITLE, "I can recommend our Gunner Master Bramley. Would you like to speak with him?" ,"", false));
     }
-                else {
+            else {
+        var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstood + lastQuestion, "", false));
+            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
