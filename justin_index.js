@@ -64,7 +64,7 @@ function onLaunch(launchRequest, session, callback) {
 
 function getWelcomeResponse(callback) {
     var intro_text = "Ho There! Greetings Captain!  I’m pleased to make your acquaintance. I’m your first mate, Alexa. A beautiful day for the maiden voyage of our beauteous vessel. The sun is shining, the breeze feels good against the skin.  Which one is she?";
-    var question_text =  "Is it the Xebec, a masterful balance of speed and strength? Popluar for a  cargo mission such as ours?";
+    var question_text =  "Is it the Xebec, a masterful balance of speed and strength? Popular for a  cargo mission such as ours?";
     var sessionAttributes = {},
         speechOutput = intro_text + question_text,
         shouldEndSession = false,
@@ -103,6 +103,7 @@ function buildSpeechletResponse(title, output, repromptText, shouldEndSession) {
     };
 }
 
+
 function handleFinishSessionRequest(intent, session, callback) {
     // End the session with a "Good bye!" if the user wants to quit the game
     callback(session.attributes,
@@ -118,6 +119,27 @@ function buildSpeechletResponseWithoutCard(output, repromptText, shouldEndSessio
         reprompt: {
             outputSpeech: {
                 type: "PlainText",
+                text: repromptText
+            }
+        },
+        shouldEndSession: shouldEndSession
+    };
+}
+
+function buildSSMLSpeechlet (title, output, repromptText, shouldEndSession) {
+    return {
+        outputSpeech: {
+            type: "SSML",
+            ssml: output
+        },
+        card: {
+            type: "Simple",
+            title: "SessionSpeechlet - " + title,
+            content: "SessionSpeechlet - " + output
+        },
+        reprompt: {
+            outputSpeech: {
+                type: "SSML",
                 text: repromptText
             }
         },
@@ -280,16 +302,24 @@ function handleEvent0(intentName, session, callback) { //Xebec?
         callback(session.attributes,
             buildSpeechletResponse(CARD_TITLE, "A most glorious choice, my captain. Our crew gathers at last." + 
                 "Let me make introductions. This, sir, is our Sailing Master, Carrington. An excellent navigator is he," + 
-                "and swiftly gets to the destination. [SM: Good day Captain]  And here is Flockhart, our Boatswain, in" +
+                "and swiftly gets to the destination. [insert audio file here]  And here is Flockhart, our Boatswain, in" +
                 "charge of maintenance and supplies, as well. He knows a ship from bottom to top, and he meets challenges" + 
                 "of a voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
                 "invaluable should we run into trouble, God help us. [MG: An honor, captain.] A fine crew if ever I saw one" + 
                 "Captain. We have a bit of extra time, would you like to talk to one of them a bit more?", "", false));
+        // callback(session.attributes,
+        //     buildSSMLSpeechlet(CARD_TITLE, "<speak>A most glorious choice, my captain. Our crew gathers at last. " + 
+        //         "Let me make introductions. This, sir, is our Sailing Master, Carrington. An excellent navigator is he," + 
+        //         "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley+01+-+An+honor.mp3' />   And here is Flockhart, our Boatswain, in" +
+        //         "charge of maintenance and supplies, as well. He knows a ship from bottom to top, and he meets challenges" + 
+        //         "of a voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
+        //         "invaluable should we run into trouble, God help us. [MG: An honor, captain.] A fine crew if ever I saw one" + 
+        //         "Captain. We have a bit of extra time, would you like to talk to one of them a bit more?</speak>", "", true));
     }
     else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 1;
         globalcurrentEventIndex = 1;
-        lastQuestion = "Is your ship that swift brigantine there?" + "Lightly armed, but such speed, and impressive maneuverabity?";
+        lastQuestion = "Is your ship that swift brigantine there?" + "Lightly armed, but such speed, and impressive maneuverability?";
         callback(session.attributes,
             buildSpeechletResponse(CARD_TITLE,"Oh, so you went a different way. Is it that swift brigantine there?" + 
                 "Lightly armed, but such speed, and impressive maneuverabity?","", false));
@@ -354,11 +384,11 @@ function handleEvent2(intentName,session,callback) { //galleon?
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 0;
-        lastQuestion = "Is your ship the Xebec, a masterful balance of speed and strength? Popluar for a  cargo mission such as ours?";
+        lastQuestion = "Is your ship the Xebec, a masterful balance of speed and strength? Popular for a  cargo mission such as ours?";
         callback(session.attributes,
             buildSpeechletResponse(CARD_TITLE, "Well surely it's none of these other ramshakle vessels. " +
                 "Tell me captain, truly <break time='0.5s'/>" +
-                "Is it the Xebec, a masterful balance of speed and strength? Popluar for a  cargo mission such as ours?" ,"", false));
+                "Is it the Xebec, a masterful balance of speed and strength? Popular for a  cargo mission such as ours?" ,"", false));
     }
 
     else {
@@ -824,7 +854,9 @@ function handleEvent104(intentName, session, callback) {
         speech = "OK. We'll just listen" +
                 //add sound clip
         //[Audio File]+
-        "That was fun! I suppose we'd best rest for tomorrow. Who knows what the new day will bring. I hope that you rest well Captain.";
+        "That was fun! I suppose we'd best rest for tomorrow. Who knows what the new day will bring. I hope that you rest well Captain." + 
+        "Good morning captain. Ah, the calm after the storm. I'm pleased to report We're back on schedule. " + //add mad audio files
+        "What say you captain? Should we prepare to outrun them <break time='.2s'/>  prepare to brace for impact, or position for attack? ";
 
         //Inert first scene from next chapter
         speech += "";
@@ -836,7 +868,9 @@ function handleEvent104(intentName, session, callback) {
         playerRP += 2;   
         //add sound clip
         //speech = [Audio File]+
-        speech += "That was so much fun! I suppose we'd best rest for tomorrow. Who knows what the new day will bring. I hope that you rest well Captain.";
+        speech = "That was so much fun! I suppose we'd best rest for tomorrow. Who knows what the new day will bring. I hope that you rest well Captain." +
+        "Good morning captain. Ah, the calm after the storm. I'm pleased to report We're back on schedule. " + //add mad audio files
+        "What say you captain? Should we prepare to outrun them <break time='.2s'/>  prepare to brace for impact, or position for attack? ";
 
         //Inert first scene from next chapter
         speech += "";
@@ -851,4 +885,122 @@ function handleEvent104(intentName, session, callback) {
             callback(session.attributes,
             buildSpeechletResponse(CARD_TITLE,speech,"", false));
     }
+}
+
+function handleEvent200(intentName, session, callback) { 
+        var speech;
+        if ("OutrunIntent" === intentName){
+            speech = "Aye aye captain!" + "[Sound effect sail]";
+
+            if (playerRP + shipSpeed > 11){
+                globalcurrentEventIndex = 300;
+                speech += "Captain, they're using split-shot. They're not trying to sink us,"+ 
+                "they're trying to disable us. They must want our cargo." + "[Sound effects crash]" +
+                "We're putting up a hell of a fight. I think if we stick with what we're doing we'll succeed." +
+                "[sound effects crashing] The Cry of the Rift is retreating! A rousing victory, Sir!" +
+                "[sound effect cheering]";
+            }
+            else{
+                globalcurrentEventIndex = 205;
+                speech += "It's not working." + "[Sound effect crash]" + "Captain we should surrender." + 
+                "It’s a lost cause. Do you want to surrender?";
+            }
+
+
+        callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE, speech, "", false));
+    }
+    else if ("BraceIntent" === intentName){
+        speech = "Aye aye captain!" + "[Sound effect crash]";
+            if (playerRP + shipDefense > 11){
+                globalcurrentEventIndex = 300;
+                speech += "Captain, they're using split-shot. They're not trying to sink us,"+ 
+                "they're trying to disable us. They must want our cargo." + "[Sound effects crash]" +
+                "We're putting up a hell of a fight. I think if we stick with what we're doing we'll succeed." +
+                "[sound effects crashing] The Cry of the Rift is retreating! A rousing victory, Sir!" +
+                "[sound effect cheering]";
+            }
+            else{
+                globalcurrentEventIndex = 205;
+                speech += "It's not working." + "[Sound effect crash]" + "Captain we should surrender." + 
+                "It’s a lost cause. Do you want to surrender?";
+            }
+
+            
+
+        callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE, speech, "", false));
+    }
+    else if ("FireIntent" === intentName){
+            speech = "Aye aye captain!" + "[Sound effect cannon fire]";
+           if (playerRP + shipAttack > 11){
+                globalcurrentEventIndex = 300;
+                speech += "Captain, they're using split-shot. They're not trying to sink us,"+ 
+                "they're trying to disable us. They must want our cargo." + "[Sound effects crash]" +
+                "We're putting up a hell of a fight. I think if we stick with what we're doing we'll succeed." +
+                "[sound effects crashing] The Cry of the Rift is retreating! A rousing victory, Sir!" +
+                "[sound effect cheering]";
+            }
+            else{
+                globalcurrentEventIndex = 205;
+                speech += "It's not working." + "[Sound effect crash]" + "Captain we should surrender." + 
+                "It’s a lost cause. Do you want to surrender?";
+            }
+
+        callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE, speech, "", false));
+    }
+    else if ("SurrenderIntent" === intentName){
+        //Game over
+        //globalcurrentEventIndex = 204;
+        callback(session.attributes,
+            buildSpeechletResponseWithoutCard("[Sound Sad Music]" + "We're all dying. We're all dead. " + 
+                "You're not a very good captain." + "<break time='0.5s'/>" + 
+                "Thank you for playing (name of game). You got the It's Kind of Crap ending." , "", true));
+    }
+}
+
+/*
+function handleEvent201(intentName, session, callback) { 
+    if (playerRP + shipSpeed > 50){
+        globalcurrentEventIndex = 300;
+        callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE, "Captain, they're using split-shot. They're not trying to sink us,"+ 
+                "they're trying to disable us. They must want our cargo." + "[Sound effects crash]" +
+                "We're putting up a hell of a fight. I think if we stick with what we're doing we'll succeed." +
+                "[sound effects crashing] The Cry of the Rift is retreating! A rousing victory, Sir!" +
+                "[sound effect cheering]", "", false));
+    }
+    else{
+        globalcurrentEventIndex = 205;
+        callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE,"It's not working." + "[Sound effect crash]" + "Captain we should surrender." + 
+                "It’s a lost cause. Do you want to surrender?", "", false));
+    }
+}
+*/
+
+
+function handleEvent205(intentName,session,callback){ 
+
+    if ("AMAZON.YesIntent" === intentName){
+        callback(session.attributes,
+            buildSpeechletResponseWithoutCard("[Sound Effect Music]" + "We're all dying. We're all dead. " + 
+                "You're not a very good captain." + "<break time='0.5s'/>" + 
+                "Thank you for playing (name of game). You got the It's Kind of Crap ending.", "", true));
+    }
+        else if ("AMAZON.NoIntent" === intentName){
+        callback(session.attributes,
+            buildSpeechletResponseWithoutCard("I'll be with you until the end!" + "[Sound effect shouts]" +
+            "<break time='0.5s'/>" + "We're being boarded, Sir! What terrible turn of events." + 
+            "We've put up a good fight, and I'll continue to stand by you. At arms sailors! We won't let them take us without a fight!" + 
+            "Captain! Look out!" + "[Gun Shot]" + "Captain, my captain, I'm so sorry I can't protect you any longer." +
+            "[SAD MUSIC]" + "Please fight on. It's been a pleasure sailing with you." + "<break time='0.5s'/>" + 
+            "Thank you for playing (name of game). You got the Dead Bots Tell No Tales ending.", "", true));
+    }else{
+        globalcurrentEventIndex = 205;
+        callback(session.attributes,
+        buildSpeechletResponse(CARD_TITLE,"Captain, we need to decide now. Do you want to surrender?", "", false));
+    }
+
 }
