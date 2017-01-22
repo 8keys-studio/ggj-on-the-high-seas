@@ -4,15 +4,6 @@ AMAZON.StartOverIntent new game
 AMAZON.StartOverIntent start
 AMAZON.StartOverIntent start new game
 
-DontKnowIntent i don't know
-DontKnowIntent don't know
-DontKnowIntent skip
-DontKnowIntent i don't know that
-DontKnowIntent who knows
-DontKnowIntent i don't know this question
-DontKnowIntent i don't know that one
-DontKnowIntent dunno
-
 AttackIntent attack
 AttackIntent fire
 AttackIntent fire cannon
@@ -33,9 +24,9 @@ EvadeIntent gang way
 InspectIntent inspect
 InspectIntent inspect ship
 InspectIntent inspect the ship
-InspectIntent let’s inspect the ship
-InspectIntent let’s inspect
-InspectIntent let’s go inspect
+InspectIntent lets inspect the ship
+InspectIntent lets inspect
+InspectIntent lets go inspect
 InspectIntent I want to inspect
 InspectIntent inspect please
 
@@ -45,7 +36,7 @@ DepartIntent I want to depart
 DepartIntent depart immediately
 DepartIntent set off
 DepartIntent set off immediately
-DepartIntent let’s set off
+DepartIntent lets set off
 DepartIntent just set off
 DepartIntent set immediately
 DepartIntent leave
@@ -57,38 +48,38 @@ DropAnchorIntent drop anchor
 DropAnchorIntent drop
 DropAnchorIntent anchor
 DropAnchorIntent drop the anchor
-DropAnchorIntent let’s drop anchor
+DropAnchorIntent lets drop anchor
 DropAnchorIntent drop the anchor
-DropAnchorIntent let’s drop the anchor
+DropAnchorIntent lets drop the anchor
 DropAnchorIntent I want to drop anchor
 DropAnchorIntent I want to drop the anchor
 
-ReefSails reef sails
-ReefSails reef the sails
-ReefSails reef
-ReefSails sails
-ReefSails the sails
-ReefSails sail
-ReefSails the sail
-ReefSails let’s reef the sails
-ReefSails I want to reef the sails
-ReefSails I want to reef sails
+ReefSailsIntent reef sails
+ReefSailsIntent reef the sails
+ReefSailsIntent reef
+ReefSailsIntent sails
+ReefSailsIntent the sails
+ReefSailsIntent sail
+ReefSailsIntent the sail
+ReefSailsIntent lets reef the sails
+ReefSailsIntent I want to reef the sails
+ReefSailsIntent I want to reef sails
 
-LayAhull lay ahull
-LayAhull lay
-LayAhull ahull
-LayAhull lay hull
-LayAhull hull
-LayAhull lay ahull and ride it out 
-LayAhull lay hull and ride it out
-LayAhull ride
-LayAhull ride it out
-LayAhull ride it
-LayAhull ride out
-LayAhull lay it out
-LayAhull lay the hull
-LayAhull lay the hull and ride it out
-LayAhull I want to lay the hull
+LayAhullIntent lay ahull
+LayAhullIntent lay
+LayAhullIntent ahull
+LayAhullIntent lay hull
+LayAhullIntent hull
+LayAhullIntent lay ahull and ride it out 
+LayAhullIntent lay hull and ride it out
+LayAhullIntent ride
+LayAhullIntent ride it out
+LayAhullIntent ride it
+LayAhullIntent ride out
+LayAhullIntent lay it out
+LayAhullIntent lay the hull
+LayAhullIntent lay the hull and ride it out
+LayAhullIntent I want to lay the hull
 
 IntReef reef sails
 IntReef reef the sails
@@ -97,7 +88,7 @@ IntReef sails
 IntReef the sails
 IntReef sail
 IntReef the sail
-IntReef let’s reef the sails
+IntReef lets reef the sails
 IntReef I want to reef the sails
 IntReef I want to reef sails
 
@@ -106,16 +97,16 @@ IntDrop drop anchor
 IntDrop drop
 IntDrop anchor
 IntDrop drop the anchor
-IntDrop let’s drop anchor
+IntDrop lets drop anchor
 IntDrop drop the anchor
-IntDrop let’s drop the anchor
+IntDrop lets drop the anchor
 IntDrop I want to drop anchor
 IntDrop I want to drop the anchor
 
 HeaveIntent heave
 HeaveIntent heave to
-HeaveIntent let’s heave to
-HeaveIntent let’s heave
+HeaveIntent lets heave to
+HeaveIntent lets heave
 HeaveIntent heave it
 HeaveIntent I want to heave to
 
@@ -124,8 +115,8 @@ RunIntent run off
 RunIntent run off downwind
 RunIntent run off down wind
 RunIntent run down wind
-RunIntent let’s run off
-RunIntent let’s run off down wind
+RunIntent lets run off
+RunIntent lets run off down wind
 RunIntent run away
 RunIntent escape
 RunIntent I want to run
@@ -140,14 +131,14 @@ PrepOutrunIntent out run them
 PrepOutrunIntent prepare to out run them
 PrepOutrunIntent I want to prepare to out run them
 PrepOutrunIntent I want to out run them
-PrepOutrunIntent let’s prepare to outrun them
+PrepOutrunIntent lets prepare to outrun them
 
 PrepBraceIntent prepare to brace
 PrepBraceIntent brace
 PrepBraceIntent prepare to brace for impact
 PrepBraceIntent brace for impact
 PrepBraceIntent impact
-PrepBraceIntent let’s brace for impact
+PrepBraceIntent lets brace for impact
 PrepBraceIntent I want to prepare to brace for impact
 PrepBraceIntent we should brace for impact
 PrepBraceIntent brace for an impact
@@ -208,20 +199,20 @@ EscapeIntent get away
 EscapeIntent leave
 EscapeIntent I want to escape
 EscapeIntent we should make our escape
-EscapeIntent let’s escape
-EscapeIntent let’s try to escape
+EscapeIntent lets escape
+EscapeIntent lets try to escape
 
 StandIntent stand
 StandIntent stand our ground
 StandIntent stand ground
 StandIntent stay
-StandIntent let’s stand our ground
+StandIntent lets stand our ground
 StandIntent I want to stand our ground
 StandIntent we should stand our ground
 
 TakedownIntent take them down
 TakedownIntent take down
 TakedownIntent take them down once and for all
-TakedownIntent let’s take them down
+TakedownIntent lets take them down
 TakedownIntent I want to take them down
 TakedownIntent we should take them down
