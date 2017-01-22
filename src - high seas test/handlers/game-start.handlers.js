@@ -6,7 +6,7 @@ const mixinHandlers = require('../modules/utils').mixinHandlers;
 const GAME_STATES = require('../enums').GAME_STATES;
 const res = require('../responses');
 
-module.exports = Alexa.CreateStateHandler(GAME_STATES.GAME_START, mixinHandlers(
+module.exports = Alexa.CreateStateHandler(GAME_STATES.GAME_START, mixinHandlers( {
 
     'AMAZON.NoIntent': function() {
       res.tell.call(this, res.goodbye());
@@ -17,7 +17,7 @@ module.exports = Alexa.CreateStateHandler(GAME_STATES.GAME_START, mixinHandlers(
      this.handler.state = FIRST_SCENE.PLAYING;
  
      // response
-     res.ask.call(this, res.firstScene());
+     res.ask.call(this, res.firstScene(), res.firstXebec()); //Not sure if this will work
   },
 
     // 'AMAZON.HelpIntent': function() {
