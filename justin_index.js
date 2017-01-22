@@ -1,6 +1,7 @@
 'use strict';
 
 var CARD_TITLE = "GGJ";
+var globalcurrentEventIndex = 0;
 
 exports.handler = function (event, context) {
 
@@ -146,16 +147,32 @@ function onIntent(intentRequest, session, callback) {
     //     }
     // }
 
-    if ("AMAZON.NoIntent" === intentName){
-        // handleFinishSessionRequest(intent, session, callback);
-        callback(session.attributes,
-        buildSpeechletResponseWithoutCard("Well screw you, then!", "", true));
+    switch (globalcurrentEventIndex) {
+
+        case 0:
+            callback(session.attributes,
+                handleEvent0(intentName, session, callback));
+            break;
+
+        case 1:
+            callback(session.attributes,
+                handleEvent1(intentName, session, callback));
+            break;
+
     }
-    else if ("AMAZON.YesIntent" === intentName) {
-        // handleFinishSessionRequest(intent, session, callback);
-        callback(session.attributes,
-        buildSpeechletResponseWithoutCard("Good, I like that ship!", "", true));
-    }
+
+    // if ("AMAZON.NoIntent" === intentName){
+    //     callback(session.attributes,
+    //     buildSpeechletResponseWithoutCard("Well screw you, then!", "", true));
+    // }
+    // else if ("AMAZON.YesIntent" === intentName) {
+    //     callback(session.attributes,
+    //     buildSpeechletResponseWithoutCard("Good, I like that ship!", "", true));
+    // }
+    // else if ("DontKnowIntent" === intentName) {
+    //     callback(session.attributes,
+    //         buildSpeechletResponseWithoutCard("Well make up your mind for god's sake!", "", true));
+    // }
 
     // dispatch custom intents to handlers here
     
@@ -169,5 +186,48 @@ function handleRepeatRequest(intent, session, callback) {
     } else {
         callback(session.attributes,
             buildSpeechletResponseWithoutCard(session.attributes.speechOutput, session.attributes.repromptText, false));
+    }
+}
+
+function handleEvent0(intentName, session, callback) {
+    if ("AMAZON.YesIntent" === intentName){
+        // sessionAttributes.currentEventIndex = 3;
+        globalcurrentEventIndex = 3;
+        callback(session.attributes,
+            buildSpeechletResponseWithoutCard( "A most glorious choice, my captain. Our crew gathers at last." + 
+                "Let me make introductions. This, sir, is our Sailing Master, Carrington. An excellent navigator is he," + 
+                "and swiftly gets to the destination. [SM: Good day Captain]  And here is Flockhart, our Boatswain, in" +
+                "charge of maintenance and supplies, as well. He knows a ship from bottom to top, and he meets challenges" + 
+                "of a voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
+                "invaluable should we run into trouble, God help us. [MG: An honor, captain.] A fine crew if ever I saw one" + 
+                "Captain. We have a bit of extra time, would you like to talk to one of them a bit more?", "", false));
+    }
+    else if ("AMAZON.NoIntent" === intentName){
+        // sessionAttributes.currentEventIndex = 1;
+        globalcurrentEventIndex = 1;
+        callback(session.attributes,
+            buildSpeechletResponseWithoutCard("Oh, so you went a different way. Is it that swift brigantine there?" + 
+                "Lightly armed, but such speed, and impressive maneuverabity?","", false));
+    }
+}
+
+function handleEvent1(intentName, session, callback) {
+    if ("AMAZON.YesIntent" === intentName){
+        // sessionAttributes.currentEventIndex = 3;
+        globalcurrentEventIndex = 3;
+        callback(session.attributes,
+            buildSpeechletResponseWithoutCard("A most glorious choice, my captain. Our crew gathers at last." + 
+                "Let me make introductions. This, sir, is our Sailing Master, Carrington. An excellent navigator is he," + 
+                "and swiftly gets to the destination. [SM: Good day Captain]  And here is Flockhart, our Boatswain, in" + 
+                "charge of maintenance and supplies, as well. He knows a ship from bottom to top, and he meets challenges" + 
+                "of a voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
+                "invaluable should we run into trouble, God help us. [MG: An honor, captain.] A fine crew if ever I saw one" + 
+                "Captain. We have a bit of extra time, would you like to talk to one of them a bit more?", "", false));
+    }
+        else if ("AMAZON.NoIntent" === intentName){
+        // sessionAttributes.currentEventIndex = 2;
+        globalcurrentEventIndex = 2;
+        callback(session.attributes,
+            buildSpeechletResponseWithoutCard("So she's the galleon, massive and built for battle? ","", false));
     }
 }
