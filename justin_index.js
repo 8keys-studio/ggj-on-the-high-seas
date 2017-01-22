@@ -960,7 +960,7 @@ function handleEvent200(intentName, session, callback) {
         callback(session.attributes,
             buildSpeechletResponseWithoutCard("[Sound Sad Music]" + "We're all dying. We're all dead. " + 
                 "You're not a very good captain." + "<break time='0.5s'/>" + 
-                "Thank you for playing (name of game). You got the It's Kind of Crap ending." , "", true));
+                "Thank you for playing Dead Bots Tell No Tales. You got the It's Kind of Crap ending." , "", true));
     }
 }
 
@@ -991,7 +991,7 @@ function handleEvent205(intentName,session,callback){
         callback(session.attributes,
             buildSpeechletResponseWithoutCard("[Sound Effect Music]" + "We're all dying. We're all dead. " + 
                 "You're not a very good captain." + "<break time='0.5s'/>" + 
-                "Thank you for playing (name of game). You got the It's Kind of Crap ending.", "", true));
+                "Thank you for playing Dead Bots Tell No Tales. You got the It's Kind of Crap ending.", "", true));
     }
         else if ("AMAZON.NoIntent" === intentName){
         callback(session.attributes,
@@ -1000,7 +1000,7 @@ function handleEvent205(intentName,session,callback){
             "We've put up a good fight, and I'll continue to stand by you. At arms sailors! We won't let them take us without a fight!" + 
             "Captain! Look out!" + "[Gun Shot]" + "Captain, my captain, I'm so sorry I can't protect you any longer." +
             "[SAD MUSIC]" + "Please fight on. It's been a pleasure sailing with you." + "<break time='0.5s'/>" + 
-            "Thank you for playing (name of game). You got the Dead Bots Tell No Tales ending.", "", true));
+            "Thank you for playing Dead Bots Tell No Tales. You got the Dead Bots Tell No Tales ending.", "", true));
     }else{
         globalcurrentEventIndex = 205;
         callback(session.attributes,
