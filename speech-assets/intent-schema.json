@@ -42,53 +42,23 @@
     {
       "intent": "AMAZON.CancelIntent"
     },
-        {
-      "intent": "NorthIntent"
-    },
-        {
-      "intent": "SouthIntent"
-    },
-            {
-      "intent": "EastIntent"
-    },
-            {
-      "intent": "WestIntent"
-    },
-                {
-      "intent": "PortIntent"
-    },
-                {
-      "intent": "SternIntent"
-    },
-                {
-      "intent": "BowIntent"
-    },
-                {
-      "intent": "StarboardIntent"
-    },
-                    {
-      "intent": "AttackIntent"
-    },
-                        {
-      "intent": "DefendIntent"
-    },
                         {
       "intent": "EvadeIntent"
     },
                             {
-      "intent": "Inspect"
+      "intent": "InspectIntent"
     },
                             {
-      "intent": "Depart"
+      "intent": "DepartIntent"
     },
                             {
-      "intent": "DropAnchor"
+      "intent": "DropAnchorIntent"
     },
                             {
-      "intent": "ReefSails"
+      "intent": "ReefSailsIntent"
     },
                             {
-      "intent": "LayAhull"
+      "intent": "LayAhullIntent"
     },
                                 {
       "intent": "IntReef"
@@ -97,10 +67,37 @@
       "intent": "IntDrop"
     },
                             {
-      "intent": "IntHeave"
+      "intent": "HeaveIntent"
     },
                             {
-      "intent": "IntRun"
+      "intent": "RunIntent"
+    },
+                                {
+      "intent": "PrepOutrunIntent"
+    },
+                                {
+      "intent": "PrepBraceIntent"
+    },
+                                {
+      "intent": "PrepFireIntent"
+    },
+                                {
+      "intent": "OutrunIntent"
+    },
+                                {
+      "intent": "BraceIntent"
+    },
+                                {
+      "intent": "FireIntent"
+    },
+                                {
+      "intent": "EscapeIntent"
+    },
+                                {
+      "intent": "StandIntent"
+    },
+                                {
+      "intent": "TakedownIntent"
     }
   ]
 }

@@ -1,8 +1,3 @@
-AnswerIntent the answer is {Answer}
-AnswerIntent my answer is {Answer}
-AnswerIntent is it {Answer}
-AnswerIntent {Answer} is my answer
-AnswerOnlyIntent {Answer}
 
 AMAZON.StartOverIntent start game
 AMAZON.StartOverIntent new game
@@ -17,74 +12,6 @@ DontKnowIntent who knows
 DontKnowIntent i don't know this question
 DontKnowIntent i don't know that one
 DontKnowIntent dunno
-
-NorthIntent north
-NorthIntent go north
-NorthIntent go to the north
-NorthIntent go northward
-NorthIntent go towards the north
-NorthIntent northern
-NorthIntent north east
-NorthIntent north west
-
-SouthIntent south
-SouthIntent go south 
-SouthIntent go to the south
-SouthIntent go towards the south
-SouthIntent southern
-SouthIntent south east
-SouthIntent south west
-
-EastIntent east
-EastIntent go east
-EastIntent go to the east
-EastIntent go towards the east
-EastIntent eastern
-
-WestIntent west
-WestIntent go west
-WestIntent go to the west
-WestIntent go towards the west
-WestIntent western
-
-BowIntent bow
-BowIntent the bow
-BowIntent the front of the ship
-BowIntent fore
-BowIntent the fore of the ship
-
-SternIntent stern
-SternIntent the stern
-SternIntent aft
-SternIntent the aft
-SternIntent back of the ship
-SternIntent the back of the ship
-SternIntent the rear 
-SternIntent the rear of the ship
-
-PortIntent port
-PortIntent the port
-PortIntent port side
-PortIntent portside
-PortIntent port of the ship
-PortIntent left
-PortIntent left side
-PortIntent the left
-PortIntent left side of the ship
-PortIntent the left side
-PortIntent the left side of the ship
-
-StarboardIntent starboard
-StarboardIntent star board
-StarboardIntent starboard side
-StarboardIntent star board side
-StarboardIntent star board of the ship
-StarboardIntent right
-StarboardIntent right side
-StarboardIntent right side of the ship
-StarboardIntent the right
-StarboardIntent the right side
-StarboardIntent the right side of the ship
 
 AttackIntent attack
 AttackIntent fire
@@ -103,36 +30,38 @@ EvadeIntent evasive maneuver
 EvadeIntent evasive maneuvers
 EvadeIntent gang way
 
-Inspect inspect
-Inspect inspect ship
-Inspect inspect the ship
-Inspect let’s inspect the ship
-Inspect let’s inspect
-Inspect let’s go inspect
-Inspect I want to inspect
-Inspect inspect please
+InspectIntent inspect
+InspectIntent inspect ship
+InspectIntent inspect the ship
+InspectIntent let’s inspect the ship
+InspectIntent let’s inspect
+InspectIntent let’s go inspect
+InspectIntent I want to inspect
+InspectIntent inspect please
 
-Depart depart
-Depart just depart
-Depart I want to depart
-Depart depart immediately
-Depart set off
-Depart set off immediately
-Depart let’s set off
-Depart just set off
-Depart set immediately
-Depart leave
-Depart leave immediately
-Depart set sail
-Depart set sail immediately
+DepartIntent depart
+DepartIntent just depart
+DepartIntent I want to depart
+DepartIntent depart immediately
+DepartIntent set off
+DepartIntent set off immediately
+DepartIntent let’s set off
+DepartIntent just set off
+DepartIntent set immediately
+DepartIntent leave
+DepartIntent leave immediately
+DepartIntent set sail
+DepartIntent set sail immediately
 
-DropAnchor drop anchor
-DropAnchor drop
-DropAnchor anchor
-DropAnchor drop the anchor
-DropAnchor let’s drop anchor
-DropAnchor drop the anchor
-DropAnchor let’s drop the anchor
+DropAnchorIntent drop anchor
+DropAnchorIntent drop
+DropAnchorIntent anchor
+DropAnchorIntent drop the anchor
+DropAnchorIntent let’s drop anchor
+DropAnchorIntent drop the anchor
+DropAnchorIntent let’s drop the anchor
+DropAnchorIntent I want to drop anchor
+DropAnchorIntent I want to drop the anchor
 
 ReefSails reef sails
 ReefSails reef the sails
@@ -141,6 +70,9 @@ ReefSails sails
 ReefSails the sails
 ReefSails sail
 ReefSails the sail
+ReefSails let’s reef the sails
+ReefSails I want to reef the sails
+ReefSails I want to reef sails
 
 LayAhull lay ahull
 LayAhull lay
@@ -156,6 +88,7 @@ LayAhull ride out
 LayAhull lay it out
 LayAhull lay the hull
 LayAhull lay the hull and ride it out
+LayAhull I want to lay the hull
 
 IntReef reef sails
 IntReef reef the sails
@@ -164,6 +97,9 @@ IntReef sails
 IntReef the sails
 IntReef sail
 IntReef the sail
+IntReef let’s reef the sails
+IntReef I want to reef the sails
+IntReef I want to reef sails
 
 IntDrop anchors away
 IntDrop drop anchor
@@ -173,19 +109,119 @@ IntDrop drop the anchor
 IntDrop let’s drop anchor
 IntDrop drop the anchor
 IntDrop let’s drop the anchor
+IntDrop I want to drop anchor
+IntDrop I want to drop the anchor
 
-IntHeave heave
-IntHeave heave to
-IntHeave let’s heave to
-IntHeave let’s heave
-IntHeave heave it
+HeaveIntent heave
+HeaveIntent heave to
+HeaveIntent let’s heave to
+HeaveIntent let’s heave
+HeaveIntent heave it
+HeaveIntent I want to heave to
 
-IntRun run
-IntRun run off
-IntRun run off downwind
-IntRun run off down wind
-IntRun run down wind
-IntRun let’s run off
-IntRun let’s run off down wind
-IntRun run away
-IntRun escape
+RunIntent run
+RunIntent run off
+RunIntent run off downwind
+RunIntent run off down wind
+RunIntent run down wind
+RunIntent let’s run off
+RunIntent let’s run off down wind
+RunIntent run away
+RunIntent escape
+RunIntent I want to run
+RunIntent I want to run off
+RunIntent I want to run downwind
+RunIntent I want to run off downwind
+
+PrepOutrunIntent prepare to out run
+PrepOutrunIntent out run
+PrepOutrunIntent we should prepare to out run
+PrepOutrunIntent out run them
+PrepOutrunIntent prepare to out run them
+PrepOutrunIntent I want to prepare to out run them
+PrepOutrunIntent I want to out run them
+PrepOutrunIntent let’s prepare to outrun them
+
+PrepBraceIntent prepare to brace
+PrepBraceIntent brace
+PrepBraceIntent prepare to brace for impact
+PrepBraceIntent brace for impact
+PrepBraceIntent impact
+PrepBraceIntent let’s brace for impact
+PrepBraceIntent I want to prepare to brace for impact
+PrepBraceIntent we should brace for impact
+PrepBraceIntent brace for an impact
+
+PrepFireIntent attack
+PrepFireIntent prepare to attack
+PrepFireIntent position
+PrepFireIntent position for attack
+PrepFireIntent position to attack
+PrepFireIntent prepare to fire
+PrepFireIntent attack them
+PrepFireIntent I want to attack
+PrepFireIntent I want to position for attack
+PrepFireIntent I want to prepare to attack
+PrepFireIntent I want to position to attack
+
+OutrunIntent out run
+OutrunIntent out run them
+OutrunIntent try to out run them
+OutrunIntent we should out run them
+OutrunIntent we should try to out run them
+OutrunIntent escape
+OutrunIntent escape them
+OutrunIntent run away
+OutrunIntent run
+OutrunIntent I want to out run them
+
+BraceIntent brace
+BraceIntent brace for impact
+BraceIntent brace impact
+BraceIntent prepare for impact
+BraceIntent we should brace for impact
+BraceIntent brace ourselves
+BraceIntent brace yourselves
+BraceIntent we should brace ourselves
+BraceIntent brace the ship
+BraceIntent I want to brace
+BraceIntent I want to brace for impact
+BraceIntent brace the ship for impact
+BraceIntent we should brace the ship for impact
+
+FireIntent fire
+FireIntent open fire
+FireIntent fire on them
+FireIntent fire at them
+FireIntent fire cannons
+FireIntent open fire on them 
+FireIntent fight
+FireIntent I want to open fire
+FireIntent I want to fire on them
+FireIntent I give the order to fire on them
+
+EscapeIntent escape
+EscapeIntent make our escape
+EscapeIntent I want to escape
+EscapeIntent try to escape
+EscapeIntent get away
+EscapeIntent leave
+EscapeIntent I want to escape
+EscapeIntent we should make our escape
+EscapeIntent let’s escape
+EscapeIntent let’s try to escape
+
+StandIntent stand
+StandIntent stand our ground
+StandIntent stand ground
+StandIntent stay
+StandIntent let’s stand our ground
+StandIntent I want to stand our ground
+StandIntent we should stand our ground
+
+TakedownIntent take them down
+TakedownIntent take down
+TakedownIntent take them down once and for all
+TakedownIntent let’s take them down
+TakedownIntent I want to take them down
+TakedownIntent we should take them down
