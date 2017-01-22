@@ -63,7 +63,7 @@ function onLaunch(launchRequest, session, callback) {
 }
 
 function getWelcomeResponse(callback) {
-    var intro_text = "Ahoy there! Greetings Captain!  I’m pleased to make your acquaintance. I’m your first mate, Alexa. It is a beautiful day for the maiden voyage of our seafaring vessel. The sun is shining, the breeze feels good against the skin.";
+    var intro_text = "Ahoy there! Greetings Captain!  I’m pleased to make your acquaintance. I’m your first mate, Alexa. It is a beautiful day for the maiden voyage of our seafaring vessel. The sun is shining, the breeze feels good against the skin. ";
     var question_text =  "Which one is our ship? Is it the Xebec, a masterful balance of speed and strength? Popular for a cargo mission such as ours?";
     var sessionAttributes = {},
         speechOutput = intro_text + question_text,
@@ -130,7 +130,7 @@ function buildSSMLSpeechlet (title, output, repromptText, shouldEndSession) {
     return {
         outputSpeech: {
             type: "SSML",
-            ssml: "<speak>" output + "</speak>"
+            ssml: "<speak>" + output + "</speak>"
         },
         card: {
             type: "Simple",
@@ -260,7 +260,16 @@ function onIntent(intentRequest, session, callback) {
         case 104:
             callback(session.attributes,
                 handleEvent104(intentName, session, callback));
+            break;
 
+        case 200:
+            callback(session.attributes,
+                handleEvent200(intentName, session, callback));
+            break;
+
+        case 205:
+            callback(session.attributes,
+                handleEvent205(intentName, session, callback));
     }
 
     // if ("AMAZON.NoIntent" === intentName){
@@ -313,7 +322,7 @@ function handleEvent0(intentName, session, callback) { //Xebec?
                 "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington01-Goodday-CD.mp3'/> And here is Flockheart, our Boatswain, in" +
                 "charge of maintenance and supplies. He knows a ship from bottom to top, and he meets the challenges" + 
                 "of any voyage. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart01-Embark-CD.mp3'/>  And this is our Master Gunner, Bramley. He'll be" + 
-                "invaluable should we run into pirate trouble. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley01-Honor-CD.mp3'/> A fine crew if ever I saw one." + 
+                "invaluable should we run into pirate trouble. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley01-Honor-CD.mp3'/> A fine crew if ever I saw one. " + 
                 "We have a bit of extra time, would you like to talk to one of your crew a bit more?", "", false));
     }
     else if ("AMAZON.NoIntent" === intentName){
@@ -378,9 +387,9 @@ function handleEvent2(intentName,session,callback) { //galleon?
                 "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington01-Goodday-CD.mp3'/> And here is Flockheart, our Boatswain, in" +
                 "charge of maintenance and supplies. He knows a ship from bottom to top, and he meets the challenges" + 
                 "of any voyage. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart01-Embark-CD.mp3'/>  And this is our Master Gunner, Bramley. He'll be" + 
-                "invaluable should we run into pirate trouble. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley01-Honor-CD.mp3'/> A fine crew if ever I saw one." + 
+                "invaluable should we run into pirate trouble. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley01-Honor-CD.mp3'/> A fine crew if ever I saw one. " + 
                 "We have a bit of extra time, would you like to talk to one of your crew a bit more?", "", false));
-    }
+    } //constant comment
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 0;
@@ -791,7 +800,7 @@ function handleEvent102(intentName, session, callback) {
         
         speech = "Aye aye Captain! Sailors! Trim the main sail! And furl the head sail!" +
         "Carrington! Keep the wind and the waves on our stern quarters or directly abaft!" +
-        "<break time='3.5s'/> Well, Captain, we were able to weather the storm.";
+        "<break time='3.5s'/> Well, Captain, we were able to weather the storm. ";
         
         if (stormAction1 == "reefsails"){
             //perfect run
@@ -838,7 +847,7 @@ function handleEvent103(intentName, session, callback) {
         speech = "I'm sure it will be great fun! I wonder what song they are singing." +
         //add sound clip
         //[Audio File]+
-        "<break time='1.5s'/> Oh, it's 'Ten Thousand Miles Away'!" +
+        "<break time='1.5s'/> Oh, it's Ten Thousand Miles Away!" +
         "Shall we sing along?";
         
             callback(session.attributes,
