@@ -310,10 +310,10 @@ function handleEvent0(intentName, session, callback) { //Xebec?
         callback(session.attributes,
             buildSSMLSpeechlet(CARD_TITLE, "A most glorious choice my captain. Our crew gathers at last. " + 
                 "Let me make introductions. This sir is our Sailing Master, Carrington. An excellent navigator is he," + 
-                "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/carrington1fix.mp3'/> And here is Flockheart, our Boatswain, in" +
+                "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington01-Goodday-CD.mp3'/> And here is Flockheart, our Boatswain, in" +
                 "charge of maintenance and supplies. He knows a ship from bottom to top, and he meets the challenges" + 
-                "of any voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
-                "invaluable should we run into pirate trouble. [MG: An honor, captain.] A fine crew if ever I saw one." + 
+                "of any voyage. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart01-Embark-CD.mp3'/>  And this is our Master Gunner, Bramley. He'll be" + 
+                "invaluable should we run into pirate trouble. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley01-Honor-CD.mp3'/> A fine crew if ever I saw one." + 
                 "We have a bit of extra time, would you like to talk to one of your crew a bit more?", "", false));
     }
     else if ("AMAZON.NoIntent" === intentName){
@@ -341,12 +341,12 @@ function handleEvent1(intentName, session, callback) { //brigantine?
         globalcurrentEventIndex = 3;
         lastQuestion = "We have a bit of extra time, would you like to talk to one of your crew a bit more?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "A most glorious choice my captain. Our crew gathers at last." + 
+            buildSSMLSpeechlet(CARD_TITLE, "A most glorious choice my captain. Our crew gathers at last. " + 
                 "Let me make introductions. This sir is our Sailing Master, Carrington. An excellent navigator is he," + 
-                "and swiftly gets to the destination. [SM: Good day Captain]  And here is Flockheart, our Boatswain, in" + 
+                "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington01-Goodday-CD.mp3'/> And here is Flockheart, our Boatswain, in" +
                 "charge of maintenance and supplies. He knows a ship from bottom to top, and he meets the challenges" + 
-                "of any voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
-                "invaluable should we run into pirate trouble. [MG: An honor, captain.] A fine crew if ever I saw one" + 
+                "of any voyage. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart01-Embark-CD.mp3'/>  And this is our Master Gunner, Bramley. He'll be" + 
+                "invaluable should we run into pirate trouble. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley01-Honor-CD.mp3'/> A fine crew if ever I saw one." + 
                 "We have a bit of extra time, would you like to talk to one of your crew a bit more?", "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
@@ -373,12 +373,12 @@ function handleEvent2(intentName,session,callback) { //galleon?
         globalcurrentEventIndex = 3;
         lastQuestion = "We have a bit of extra time, would you like to talk to one of the crew a bit more?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "A most glorious choice my captain. Our crew gathers at last." + 
+            buildSSMLSpeechlet(CARD_TITLE, "A most glorious choice my captain. Our crew gathers at last. " + 
                 "Let me make introductions. This sir is our Sailing Master, Carrington. An excellent navigator is he," + 
-                "and swiftly gets to the destination. [SM: Good day Captain]  And here is Flockheart, our Boatswain, in" + 
+                "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington01-Goodday-CD.mp3'/> And here is Flockheart, our Boatswain, in" +
                 "charge of maintenance and supplies. He knows a ship from bottom to top, and he meets the challenges" + 
-                "of any voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
-                "invaluable should we run into pirate trouble. [MG: An honor, captain.] A fine crew if ever I saw one" + 
+                "of any voyage. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart01-Embark-CD.mp3'/>  And this is our Master Gunner, Bramley. He'll be" + 
+                "invaluable should we run into pirate trouble. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley01-Honor-CD.mp3'/> A fine crew if ever I saw one." + 
                 "We have a bit of extra time, would you like to talk to one of your crew a bit more?", "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
@@ -386,7 +386,7 @@ function handleEvent2(intentName,session,callback) { //galleon?
         globalcurrentEventIndex = 0;
         lastQuestion = "Which one is our ship? Is it the Xebec, a masterful balance of speed and strength? Popular for a cargo mission such as ours?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "Well surely it's none of these other ramshakle vessels. " +
+            buildSSMLSpeechlet(CARD_TITLE, "Well surely it's none of these other ramshackle vessels. " +
                 "Tell me captain, truly <break time='0.5s'/>" +
                 "Is it the Xebec, a masterful balance of speed and strength? Popular for a cargo mission such as ours?" ,"", false));
     }
@@ -433,7 +433,7 @@ function handleEvent4(intentName,session,callback){ //"Perhaps sailing master Ca
         playerRP += 1;
         lastQuestion = "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "[SM AUDIO FILE HERE]" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington02-Team-CD.mp3'/>" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
@@ -459,7 +459,7 @@ function handleEvent5(intentName,session,callback){ //"Then maybe our boatswain,
         playerRP += 1;
         lastQuestion = "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "[B AUDIO FILE HERE]" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart02-ShipShape-CD.mp3'/>" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
@@ -484,7 +484,7 @@ function handleEvent6(intentName,session,callback){ //"Then surely Gunner Master
         playerRP += 1;
         lastQuestion = "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "[MG AUDIO FILE HERE]" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley02-Danger-CD.mp3'/>" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
@@ -517,8 +517,8 @@ function handleEvent7(intentName,session,callback){ //Would you like to inspect 
             buildSSMLSpeechlet(CARD_TITLE, "A wise decision captain, I'm sure we'll find everything in excellent shape. " +
                 "As you can see, your crew has been hard at work preparing for our journey. <break time='0.5s'/>" +
                 "Just through here are your quarters. I apologize but we haven't been able to remove the skull that the previous owner left behind. " +
-                "[soundfile] Yeah yeah, I've already heard your sob story. Don't let him get started Captain you'll never hear the end. " +
-                "I'll just throw this tarp over him so he won't bother you anymore. [soundfile] <break time='0.5s'/>" + 
+                "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Skull01-Cursed-CD.mp3'/> Yeah yeah, I've already heard your sob story. Don't let him get started Captain you'll never hear the end. " +
+                "I'll just throw this tarp over him so he won't bother you anymore. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Skull02-Muffled-CD.mp3'/> <break time='0.5s'/>" + 
                 "That concludes our tour. Captain, it's time to weigh anchor and set sail! <break time='0.5s'/>" + inevtiableEventSpeech, "", false));
     }
 
@@ -583,7 +583,7 @@ function handleEvent9(intentName,session,callback){ //Sailing Master Carrington 
         playerRP += 1;
         lastQuestion = speech;
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "[SM AUDIO FILE] [WAVES] [SCENE CHANGE]" + speech , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington03-Time-CD.mp3'/> [WAVES] [SCENE CHANGE]" + speech , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
@@ -615,7 +615,7 @@ function handleEvent10(intentName,session,callback){ //What do you say to our bo
         playerRP += 1;
         lastQuestion = speech;
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "[B AUDIO FILE] [WAVES] [SCENE CHANGE]" + speech , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart03-Dust-CD.mp3'/> [WAVES] [SCENE CHANGE]" + speech , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
@@ -634,7 +634,7 @@ function handleEvent10(intentName,session,callback){ //What do you say to our bo
 
 function handleEvent11(intentName,session,callback){ //I can recommend our Gunner Master Bramley. Would you like to speak with him?
 
-    var yesSpeech = "Captain, a storm will be fully upon us soon" + 
+    var yesSpeech = "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley03-Munitions-CD.mp3'/> [WAVES]" + " Captain, a storm will be fully upon us soon" + 
                 "It's bad and I fear it's only going to get worse." +
                 "We won't be able to find a port in time, but we could 'drop anchor'," +
                 "'reef the sails', or maybe 'lay ahull and ride it out'" +
@@ -855,7 +855,9 @@ function handleEvent104(intentName, session, callback) {
                 //add sound clip
         //[Audio File]+
         "That was fun! I suppose we'd best rest for tomorrow. Who knows what the new day will bring. I hope that you rest well Captain." + 
-        "Good morning captain. Ah, the calm after the storm. I'm pleased to report We're back on schedule. " + //add mad audio files
+        "Good morning captain. Ah, the calm after the storm. I'm pleased to report We're back on schedule. " + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington04-TheRift-CD.mp3'/>" +
+        "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington05-Outrun-CD.mp3'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart04-Brace-CD.mp3'/>" +
+        "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley04-Strategic-CD.mp3'/>" +
         "What say you captain? Should we prepare to outrun them <break time='.2s'/>  prepare to brace for impact, or position for attack? ";
 
         //Inert first scene from next chapter
@@ -869,7 +871,9 @@ function handleEvent104(intentName, session, callback) {
         //add sound clip
         //speech = [Audio File]+
         speech = "That was so much fun! I suppose we'd best rest for tomorrow. Who knows what the new day will bring. I hope that you rest well Captain." +
-        "Good morning captain. Ah, the calm after the storm. I'm pleased to report We're back on schedule. " + //add mad audio files
+        "Good morning captain. Ah, the calm after the storm. I'm pleased to report We're back on schedule. " + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington04-TheRift-CD.mp3'/>" +
+        "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington05-Outrun-CD.mp3'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart04-Brace-CD.mp3'/>" +
+        "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley04-Strategic-CD.mp3'/>" +
         "What say you captain? Should we prepare to outrun them <break time='.2s'/>  prepare to brace for impact, or position for attack? ";
 
         //Inert first scene from next chapter
