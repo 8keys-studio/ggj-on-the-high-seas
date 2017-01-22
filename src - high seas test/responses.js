@@ -76,13 +76,74 @@ module.exports.firstMeetBramley = () =>
 
 
 
-module.exports.firstMeetFlockheart = () =>
-	'What do you say to our boatswain, Flockheart? ';
+module.exports.secondStart = () =>
+	'Captain, a storm will be fully upon us soon.  It's bad and I fear it's only going to get worse.';
 
-module.exports.firstMeetFlockheart = () =>
-	'What do you say to our boatswain, Flockheart? ';
+module.exports.secondStormChoice= () =>
+	'We won't be able to find a port in time, but we could "drop anchor," "reef the sails," or maybe "lay ahull and ride it out." What say you?';
 
+module.exports.secondDropAnchor = () =>
+	'Aye aye Captain!  Carrington! Aim the bau into the wind! Sailors! Drop anchor! ';
 
+module.exports.secondReefSails = () =>
+	'Aye aye Captain!  Carrington! Turn toward the wind! We're reefing the main sail. Sailors! Ease the mainsheet and furl the jib!';
+
+module.exports.secondLayAhull = () =>
+	'Aye aye Captain!  Trim the sails! Batten down the hatches! Carrington, lock the rudder windward! Then get below deck!  We're trusting the ship to ride this storm out!';
+
+module.exports.secondIntense = () =>
+	'The storm is intensifying! I pray that we'll make it through safely!';
+
+module.exports.secondIntenseChoice = () =>
+	'We could "Reef the sails and Drop anchor", "heave to," or "run off downwind." What would you have us do now, sir?';
+
+module.exports.secondIntReef = () =>
+	'Aye aye, Captain!  Carrington! Turn toward the wind! We're reefing the main sail. Sailors! Ease the mainsheet and furl the jib!';
+
+module.exports.secondIntDrop = () =>
+	'Aye aye , Captain!  Carrington! Aim the bow into the wind! Sailors! Drop anchor!';
+
+module.exports.secondIntHeave = () =>
+	'Aye aye, Captain! Sailors! Trim the jib aback! Trim the main in hard! Carrington! Tack across the wind and aim for 60 degrees off wind! Lash the helm and then get below deck!';
+
+module.exports.secondIntRun = () =>
+	'Aye aye, Captain! Sailors! Trim the mainsail! And furl the headsail! Carrington! Keep the wind and the waves on our stern quarters or directly abaft!';
+
+module.exports.secondWeathered = () =>
+	'Well, Captain, we were able to weather the storm. ';
+
+module.exports.secondAllBad = () =>
+	'You could have done better out there. Unfortunately, the ship took some damage. The crew was also disappointed, and there were a few minor injuries. But I'm sure you'll find your sea legs soon enough.';
+
+module.exports.secondMixed = () =>
+	'Not too shabby Captain. We only took a little damage, and the crew survived. We'll do better next time.';
+
+module.exports.secondAllGood = () =>
+	'Great work Captain! The ship took no damage, and I think the crew was impressed. ';
+
+module.exports.secondAllBest = () =>
+	'You were amazing Captain! I was sure that rumors of your skill had been somewhat exaggerated. But you certainly lupheld your reputation. The crew was greatly impressed too!';
+
+module.exports.secondOnDeck = () =>
+	'The men have finished their meals and are on deck having drinks. They are sure to start singing and dancing soon. Would you like to join them?';
+
+module.exports.secondNoSong = () =>
+	'Very well, sir. I hope that you rest well.';
+
+module.exports.secondYesSong = () =>
+	'I'm sure it will be great fun! I wonder what song they are singing.';
+
+module.exports.secondSongName = () =>
+	'Ah! It's (Name of Song)! Shall we sing along?';
+
+module.exports.secondDontSing = () =>
+	'Ok. We'll just listen.';
+
+module.exports.secondHadFun = () =>
+	'That was so much fun! I suppose we'd best rest for tomorrow. Who knows what the new day will bring. I hope that you rest well, Captain.';
+
+module.exports.secondGoodnight = () =>
+	'Goodnight.';
 
 
 

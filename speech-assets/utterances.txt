@@ -102,3 +102,90 @@ EvadeIntent evade
 EvadeIntent evasive maneuver
 EvadeIntent evasive maneuvers
 EvadeIntent gang way
+
+Inspect inspect
+Inspect inspect ship
+Inspect inspect the ship
+Inspect let’s inspect the ship
+Inspect let’s inspect
+Inspect let’s go inspect
+Inspect I want to inspect
+Inspect inspect please
+
+Depart depart
+Depart just depart
+Depart I want to depart
+Depart depart immediately
+Depart set off
+Depart set off immediately
+Depart let’s set off
+Depart just set off
+Depart set immediately
+Depart leave
+Depart leave immediately
+Depart set sail
+Depart set sail immediately
+
+DropAnchor drop anchor
+DropAnchor drop
+DropAnchor anchor
+DropAnchor drop the anchor
+DropAnchor let’s drop anchor
+DropAnchor drop the anchor
+DropAnchor let’s drop the anchor
+
+ReefSails reef sails
+ReefSails reef the sails
+ReefSails reef
+ReefSails sails
+ReefSails the sails
+ReefSails sail
+ReefSails the sail
+
+LayAhull lay ahull
+LayAhull lay
+LayAhull ahull
+LayAhull lay hull
+LayAhull hull
+LayAhull lay ahull and ride it out 
+LayAhull lay hull and ride it out
+LayAhull ride
+LayAhull ride it out
+LayAhull ride it
+LayAhull ride out
+LayAhull lay it out
+LayAhull lay the hull
+LayAhull lay the hull and ride it out
+
+IntReef reef sails
+IntReef reef the sails
+IntReef reef
+IntReef sails
+IntReef the sails
+IntReef sail
+IntReef the sail
+
+IntDrop anchors away
+IntDrop drop anchor
+IntDrop drop
+IntDrop anchor
+IntDrop drop the anchor
+IntDrop let’s drop anchor
+IntDrop drop the anchor
+IntDrop let’s drop the anchor
+
+IntHeave heave
+IntHeave heave to
+IntHeave let’s heave to
+IntHeave let’s heave
+IntHeave heave it
+
+IntRun run
+IntRun run off
+IntRun run off downwind
+IntRun run off down wind
+IntRun run down wind
+IntRun let’s run off
+IntRun let’s run off down wind
+IntRun run away
+IntRun escape

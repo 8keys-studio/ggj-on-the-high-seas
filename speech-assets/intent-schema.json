@@ -74,6 +74,33 @@
     },
                         {
       "intent": "EvadeIntent"
+    },
+                            {
+      "intent": "Inspect"
+    },
+                            {
+      "intent": "Depart"
+    },
+                            {
+      "intent": "DropAnchor"
+    },
+                            {
+      "intent": "ReefSails"
+    },
+                            {
+      "intent": "LayAhull"
+    },
+                                {
+      "intent": "IntReef"
+    },
+                            {
+      "intent": "IntDrop"
+    },
+                            {
+      "intent": "IntHeave"
+    },
+                            {
+      "intent": "IntRun"
     }
   ]
 }
