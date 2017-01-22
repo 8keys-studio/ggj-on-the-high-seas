@@ -11,7 +11,7 @@ var stormAction1 = "";
 var stormAction2 = "";
 var notUnderstood = "I'm sorry, captain. I didn't understand your orders. Let me try again. ";
 var notUnderstoodArray = ["Come again, Captain? ", "Speak up, Captain, the waves are loud. ", "Seriously, I didn’t get that. "];
-var lastQuestion = "Is the Xebec your ship, a masterful balance of speed and strength? Popluar for a  cargo mission such as ours?";
+var lastQuestion = "Which one is our ship?  Is it the Xebec, a masterful balance of speed and strength? Popular for a cargo mission such as ours?";
 
 exports.handler = function (event, context) {
 
@@ -63,8 +63,8 @@ function onLaunch(launchRequest, session, callback) {
 }
 
 function getWelcomeResponse(callback) {
-    var intro_text = "Ho There! Greetings Captain!  I’m pleased to make your acquaintance. I’m your first mate, Alexa. A beautiful day for the maiden voyage of our beauteous vessel. The sun is shining, the breeze feels good against the skin.  Which one is she?";
-    var question_text =  "Is it the Xebec, a masterful balance of speed and strength? Popular for a  cargo mission such as ours?";
+    var intro_text = "Ahoy there! Greetings Captain!  I’m pleased to make your acquaintance. I’m your first mate, Alexa. It is a beautiful day for the maiden voyage of our seafaring vessel. The sun is shining, the breeze feels good against the skin.";
+    var question_text =  "Which one is our ship? Is it the Xebec, a masterful balance of speed and strength? Popular for a cargo mission such as ours?";
     var sessionAttributes = {},
         speechOutput = intro_text + question_text,
         shouldEndSession = false,
@@ -78,7 +78,7 @@ function getWelcomeResponse(callback) {
     };
 
     callback(sessionAttributes,
-        buildSpeechletResponse(CARD_TITLE, speechOutput, repromptText, shouldEndSession));
+        buildSSMLSpeechlet(CARD_TITLE, speechOutput, repromptText, shouldEndSession));
 
 }
 
@@ -130,7 +130,7 @@ function buildSSMLSpeechlet (title, output, repromptText, shouldEndSession) {
     return {
         outputSpeech: {
             type: "SSML",
-            ssml: output
+            ssml: "<speak>" output + "</speak>"
         },
         card: {
             type: "Simple",
@@ -298,9 +298,9 @@ function handleEvent0(intentName, session, callback) { //Xebec?
         shipAttack = 1;
         shipSpeed = 1;
         shipDefense = 1;
-        lastQuestion = "We have a bit of extra time, would you like to talk to one of the crew a bit more?";
+        lastQuestion = "We have a bit of extra time, would you like to talk to one of your crew a bit more?";
         // callback(session.attributes,
-        //     buildSpeechletResponse(CARD_TITLE, "A most glorious choice, my captain. Our crew gathers at last." + 
+        //     buildSSMLSpeechlet(CARD_TITLE, "A most glorious choice, my captain. Our crew gathers at last." + 
         //         "Let me make introductions. This, sir, is our Sailing Master, Carrington. An excellent navigator is he," + 
         //         "and swiftly gets to the destination. [insert audio file here]  And here is Flockhart, our Boatswain, in" +
         //         "charge of maintenance and supplies, as well. He knows a ship from bottom to top, and he meets challenges" + 
@@ -308,27 +308,27 @@ function handleEvent0(intentName, session, callback) { //Xebec?
         //         "invaluable should we run into trouble, God help us. [MG: An honor, captain.] A fine crew if ever I saw one" + 
         //         "Captain. We have a bit of extra time, would you like to talk to one of them a bit more?", "", false));
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "<speak>A most glorious choice, my captain. Our crew gathers at last. " + 
-                "Let me make introductions. This, sir, is our Sailing Master, Carrington. An excellent navigator is he," + 
-                "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/carrington1fix.mp3'/> And here is Flockhart, our Boatswain, in" +
-                "charge of maintenance and supplies, as well. He knows a ship from bottom to top, and he meets challenges" + 
-                "of a voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
-                "invaluable should we run into trouble, God help us. [MG: An honor, captain.] A fine crew if ever I saw one" + 
-                "Captain. We have a bit of extra time, would you like to talk to one of them a bit more?</speak>", "", true));
+            buildSSMLSpeechlet(CARD_TITLE, "A most glorious choice my captain. Our crew gathers at last. " + 
+                "Let me make introductions. This sir is our Sailing Master, Carrington. An excellent navigator is he," + 
+                "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/carrington1fix.mp3'/> And here is Flockheart, our Boatswain, in" +
+                "charge of maintenance and supplies. He knows a ship from bottom to top, and he meets the challenges" + 
+                "of any voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
+                "invaluable should we run into pirate trouble. [MG: An honor, captain.] A fine crew if ever I saw one." + 
+                "We have a bit of extra time, would you like to talk to one of your crew a bit more?", "", false));
     }
     else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 1;
         globalcurrentEventIndex = 1;
         lastQuestion = "Is your ship that swift brigantine there?" + "Lightly armed, but such speed, and impressive maneuverability?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE,"Oh, so you went a different way. Is it that swift brigantine there?" + 
-                "Lightly armed, but such speed, and impressive maneuverabity?","", false));
+            buildSSMLSpeechlet(CARD_TITLE,"Apologies. Is your ship that swift brigantine there?" + 
+                "Lightly armed, but such speed, and impressive maneuverability?","", false));
     }
 
     else {
         var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 }
 
@@ -339,28 +339,28 @@ function handleEvent1(intentName, session, callback) { //brigantine?
         shipDefense = 1;
         shipSpeed = 2;
         globalcurrentEventIndex = 3;
-        lastQuestion = "We have a bit of extra time, would you like to talk to one of the crew a bit more?";
+        lastQuestion = "We have a bit of extra time, would you like to talk to one of your crew a bit more?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "A most glorious choice, my captain. Our crew gathers at last." + 
-                "Let me make introductions. This, sir, is our Sailing Master, Carrington. An excellent navigator is he," + 
-                "and swiftly gets to the destination. [SM: Good day Captain]  And here is Flockhart, our Boatswain, in" + 
-                "charge of maintenance and supplies, as well. He knows a ship from bottom to top, and he meets challenges" + 
-                "of a voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
-                "invaluable should we run into trouble, God help us. [MG: An honor, captain.] A fine crew if ever I saw one" + 
-                "Captain. We have a bit of extra time, would you like to talk to one of them a bit more?", "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "A most glorious choice my captain. Our crew gathers at last." + 
+                "Let me make introductions. This sir is our Sailing Master, Carrington. An excellent navigator is he," + 
+                "and swiftly gets to the destination. [SM: Good day Captain]  And here is Flockheart, our Boatswain, in" + 
+                "charge of maintenance and supplies. He knows a ship from bottom to top, and he meets the challenges" + 
+                "of any voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
+                "invaluable should we run into pirate trouble. [MG: An honor, captain.] A fine crew if ever I saw one" + 
+                "We have a bit of extra time, would you like to talk to one of your crew a bit more?", "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 2;
-        lastQuestion = "So your ship's the galleon, massive and built for battle?";
+        lastQuestion = "So your ship is the galleon, massive and built for battle?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "So she's the galleon, massive and built for battle?","", false));
+            buildSSMLSpeechlet(CARD_TITLE, "So your ship is the galleon, massive and built for battle?","", false));
     }
 
     else {
         var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 }
 
@@ -373,28 +373,28 @@ function handleEvent2(intentName,session,callback) { //galleon?
         globalcurrentEventIndex = 3;
         lastQuestion = "We have a bit of extra time, would you like to talk to one of the crew a bit more?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "A most glorious choice, my captain. Our crew gathers at last." + 
-                "Let me make introductions. This, sir, is our Sailing Master, Carrington. An excellent navigator is he," + 
-                "and swiftly gets to the destination. [SM: Good day Captain]  And here is Flockhart, our Boatswain, in" + 
-                "charge of maintenance and supplies, as well. He knows a ship from bottom to top, and he meets challenges" + 
-                "of a voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
-                "invaluable should we run into trouble, God help us. [MG: An honor, captain.] A fine crew if ever I saw one" + 
-                "Captain. We have a bit of extra time, would you like to talk to one of them a bit more?", "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "A most glorious choice my captain. Our crew gathers at last." + 
+                "Let me make introductions. This sir is our Sailing Master, Carrington. An excellent navigator is he," + 
+                "and swiftly gets to the destination. [SM: Good day Captain]  And here is Flockheart, our Boatswain, in" + 
+                "charge of maintenance and supplies. He knows a ship from bottom to top, and he meets the challenges" + 
+                "of any voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
+                "invaluable should we run into pirate trouble. [MG: An honor, captain.] A fine crew if ever I saw one" + 
+                "We have a bit of extra time, would you like to talk to one of your crew a bit more?", "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 0;
-        lastQuestion = "Is your ship the Xebec, a masterful balance of speed and strength? Popular for a  cargo mission such as ours?";
+        lastQuestion = "Which one is our ship? Is it the Xebec, a masterful balance of speed and strength? Popular for a cargo mission such as ours?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "Well surely it's none of these other ramshakle vessels. " +
+            buildSSMLSpeechlet(CARD_TITLE, "Well surely it's none of these other ramshakle vessels. " +
                 "Tell me captain, truly <break time='0.5s'/>" +
-                "Is it the Xebec, a masterful balance of speed and strength? Popular for a  cargo mission such as ours?" ,"", false));
+                "Is it the Xebec, a masterful balance of speed and strength? Popular for a cargo mission such as ours?" ,"", false));
     }
 
     else {
         var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
@@ -405,21 +405,21 @@ function handleEvent3(intentName,session,callback) { //We have a bit of extra ti
         globalcurrentEventIndex = 4;
         lastQuestion = "Would you like to speak to sailing master Carrington?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "Perhaps sailing master Carrington?", "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "Perhaps sailing master Carrington?", "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 7;
         lastQuestion = "Would you like to inspect the ship further before we depart, or set off immediately?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "Aye, then let us dally no more. Captain to the deck! <break time='0.5s'/>" +
+            buildSSMLSpeechlet(CARD_TITLE, "Aye, then let us dally no more. Captain to the deck! <break time='0.5s'/>" +
             "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" ,"", false));
     }
 
     else {
         var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 
@@ -433,20 +433,20 @@ function handleEvent4(intentName,session,callback){ //"Perhaps sailing master Ca
         playerRP += 1;
         lastQuestion = "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "[SM AUDIO FILE HERE]" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "[SM AUDIO FILE HERE]" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 5;
         lastQuestion = "Would you like to speak to our boatswain, Flockheart?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "Then maybe our boatswain, Flockheart." ,"", false));
+            buildSSMLSpeechlet(CARD_TITLE, "Then maybe our boatswain, Flockheart." ,"", false));
     }
 
     else {
         var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
@@ -459,19 +459,19 @@ function handleEvent5(intentName,session,callback){ //"Then maybe our boatswain,
         playerRP += 1;
         lastQuestion = "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "[B AUDIO FILE HERE]" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "[B AUDIO FILE HERE]" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 6;
         lastQuestion = "Would you like to speak to Gunner Master Bramley?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "Then surely Gunner Master Bramley?" ,"", false));
+            buildSSMLSpeechlet(CARD_TITLE, "Then surely Gunner Master Bramley?" ,"", false));
     }
         else {
         var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
@@ -484,20 +484,20 @@ function handleEvent6(intentName,session,callback){ //"Then surely Gunner Master
         playerRP += 1;
         lastQuestion = "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "[MG AUDIO FILE HERE]" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "[MG AUDIO FILE HERE]" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 7;
         lastQuestion = "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "Aye, then let us dally no more. Captain to the deck! <break time='0.5s'/>" +
+            buildSSMLSpeechlet(CARD_TITLE, "Aye, then let us dally no more. Captain to the deck! <break time='0.5s'/>" +
             "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" ,"", false));
     }
             else {
         var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
@@ -514,7 +514,7 @@ function handleEvent7(intentName,session,callback){ //Would you like to inspect 
         globalcurrentEventIndex = 8;
         lastQuestion = "Shall I arrange a meeting with one of your crew members?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "A wise decision captain, I'm sure we'll find everything in excellent shape. " +
+            buildSSMLSpeechlet(CARD_TITLE, "A wise decision captain, I'm sure we'll find everything in excellent shape. " +
                 "As you can see, your crew has been hard at work preparing for our journey. <break time='0.5s'/>" +
                 "Just through here are your quarters. I apologize but we haven't been able to remove the skull that the previous owner left behind. " +
                 "[soundfile] Yeah yeah, I've already heard your sob story. Don't let him get started Captain you'll never hear the end. " +
@@ -527,12 +527,12 @@ function handleEvent7(intentName,session,callback){ //Would you like to inspect 
         globalcurrentEventIndex = 8;
         lastQuestion = "Shall I arrange a meeting with one of your crew members?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, inevtiableEventSpeech, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, inevtiableEventSpeech, "", false));
     }
 
     else {
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstood + lastQuestion, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, notUnderstood + lastQuestion, "", false));
     }
 
 }
@@ -550,20 +550,20 @@ function handleEvent8(intentName,session,callback){ // ...getting to know the cr
         globalcurrentEventIndex = 9;
         lastQuestion = "Sailing Master Carrington might be a good choice. Would you like to speak with him?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "Sailing Master Carrington might be a good choice. Would you like to speak with him?" , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "Sailing Master Carrington might be a good choice. Would you like to speak with him?" , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 101;
         lastQuestion = speech;
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "Very well then. I'll be in my bunk should you need me. Good evening to you. [WAVE SOUND SCENE CHANGE]" + speech ,"", false));
+            buildSSMLSpeechlet(CARD_TITLE, "Very well then. I'll be in my bunk should you need me. Good evening to you. [WAVE SOUND SCENE CHANGE]" + speech ,"", false));
     }
 
     else {
         var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
@@ -583,19 +583,19 @@ function handleEvent9(intentName,session,callback){ //Sailing Master Carrington 
         playerRP += 1;
         lastQuestion = speech;
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "[SM AUDIO FILE] [WAVES] [SCENE CHANGE]" + speech , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "[SM AUDIO FILE] [WAVES] [SCENE CHANGE]" + speech , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 10;
         lastQuestion = "What do you say to our boatswain Flockheart. Would you like to speak with him?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "What do you say to our boatswain Flockheart. Would you like to speak with him?" ,"", false));
+            buildSSMLSpeechlet(CARD_TITLE, "What do you say to our boatswain Flockheart. Would you like to speak with him?" ,"", false));
     }
         else {
         var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
@@ -615,19 +615,19 @@ function handleEvent10(intentName,session,callback){ //What do you say to our bo
         playerRP += 1;
         lastQuestion = speech;
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "[B AUDIO FILE] [WAVES] [SCENE CHANGE]" + speech , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "[B AUDIO FILE] [WAVES] [SCENE CHANGE]" + speech , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 11;
         lastQuestion = "I can recommend our Gunner Master Bramley. Would you like to speak with him?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "I can recommend our Gunner Master Bramley. Would you like to speak with him?" ,"", false));
+            buildSSMLSpeechlet(CARD_TITLE, "I can recommend our Gunner Master Bramley. Would you like to speak with him?" ,"", false));
     }
             else {
         var responseNum = Math.floor(Math.random() * 2);
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, notUnderstoodArray[responseNum] + lastQuestion, "", false));
     }
 
 }
@@ -640,7 +640,7 @@ function handleEvent11(intentName,session,callback){ //I can recommend our Gunne
                 "'reef the sails', or maybe 'lay ahull and ride it out'" +
                 "What say you?";
 
-    var noSpeech = "Very well then. I'll be in my bunk should you need me. Good evening to you. Captain, a storm will be fully upon us soon" + 
+    var noSpeech = "Very well then. I'll be in my bunk should you need me. Good evening to you." + "[SOUND EFFECT]" + " Captain, a storm will be fully upon us soon" + 
                 "It's bad and I fear it's only going to get worse." +
                 "We won't be able to find a port in time, but we could 'drop anchor'," +
                 "'reef the sails', or maybe 'lay ahull and ride it out'" +
@@ -652,13 +652,13 @@ function handleEvent11(intentName,session,callback){ //I can recommend our Gunne
         shipAttack += 1;
         playerRP += 1;
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, yesSpeech, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, yesSpeech, "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 101;
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, noSpeech,"", false));
+            buildSSMLSpeechlet(CARD_TITLE, noSpeech,"", false));
     }
 
 }
@@ -690,7 +690,7 @@ function handleEvent101(intentName, session, callback) {
                 "What would you have us do now, sir?";
                 
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+            buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }
     else if ("LayAhull" === intentName){
         globalcurrentEventIndex = 102;
@@ -704,12 +704,12 @@ function handleEvent101(intentName, session, callback) {
                 "What would you have us do now, sir?";
                 
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+            buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }else{
         globalcurrentEventIndex = 101;
         speech = "Captain! We can't hear your command over the crashing of the storm!";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+            buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }
 }
 
@@ -760,7 +760,7 @@ function handleEvent102(intentName, session, callback) {
         //add time passing sound
         speech += "The men have finished their meals and are on deck having drinks. They are sure to start singing and dancing soon. Would you like to join them?";
          callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+            buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }
     else if ("HeaveIntent" === intentName){
         globalcurrentEventIndex = 103;
@@ -782,7 +782,7 @@ function handleEvent102(intentName, session, callback) {
         //add time passing sound
         speech += "The men have finished their meals and are on deck having drinks. They are sure to start singing and dancing soon. Would you like to join them?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+            buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }
     else if ("RunIntent" === intentName){
         globalcurrentEventIndex = 103;
@@ -810,13 +810,13 @@ function handleEvent102(intentName, session, callback) {
         //add time passing sound
         speech += "The men have finished their meals and are on deck having drinks. They are sure to start singing and dancing soon. Would you like to join them?";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+            buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }
     else{
         globalcurrentEventIndex = 102;
         speech = "Captain! We can't hear your command over the crashing of the storm!";
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+            buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }
 }
 
@@ -830,7 +830,7 @@ function handleEvent103(intentName, session, callback) {
         //Add first questions from next chapter
         speech += "";
             callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+            buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }else if ("AMAZON.YesIntent" === intentName){
         globalcurrentEventIndex = 104;
         playerRP += 1;   
@@ -842,7 +842,7 @@ function handleEvent103(intentName, session, callback) {
         "Shall we sing along?";
         
             callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+            buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }
 }
 
@@ -861,7 +861,7 @@ function handleEvent104(intentName, session, callback) {
         //Inert first scene from next chapter
         speech += "";
             callback(session.attributes,
-        buildSpeechletResponse(CARD_TITLE,speech,"", false));
+        buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }
     else if ("AMAZON.YesIntent" === intentName){
         globalcurrentEventIndex = 200;
@@ -876,14 +876,14 @@ function handleEvent104(intentName, session, callback) {
         speech += "";
         
             callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+            buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }
     else{
         globalcurrentEventIndex = 104;
                 
         speech += "Captain, what do you say? Should we join in?";
             callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+            buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }
 }
 
@@ -908,7 +908,7 @@ function handleEvent200(intentName, session, callback) {
 
 
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, speech, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, speech, "", false));
     }
     else if ("BraceIntent" === intentName){
         speech = "Aye aye captain!" + "[Sound effect crash]";
@@ -929,7 +929,7 @@ function handleEvent200(intentName, session, callback) {
             
 
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, speech, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, speech, "", false));
     }
     else if ("FireIntent" === intentName){
             speech = "Aye aye captain!" + "[Sound effect cannon fire]";
@@ -948,7 +948,7 @@ function handleEvent200(intentName, session, callback) {
             }
 
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, speech, "", false));
+            buildSSMLSpeechlet(CARD_TITLE, speech, "", false));
     }
     else if ("SurrenderIntent" === intentName){
         //Game over
@@ -965,7 +965,7 @@ function handleEvent201(intentName, session, callback) {
     if (playerRP + shipSpeed > 50){
         globalcurrentEventIndex = 300;
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "Captain, they're using split-shot. They're not trying to sink us,"+ 
+            buildSSMLSpeechlet(CARD_TITLE, "Captain, they're using split-shot. They're not trying to sink us,"+ 
                 "they're trying to disable us. They must want our cargo." + "[Sound effects crash]" +
                 "We're putting up a hell of a fight. I think if we stick with what we're doing we'll succeed." +
                 "[sound effects crashing] The Cry of the Rift is retreating! A rousing victory, Sir!" +
@@ -974,7 +974,7 @@ function handleEvent201(intentName, session, callback) {
     else{
         globalcurrentEventIndex = 205;
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE,"It's not working." + "[Sound effect crash]" + "Captain we should surrender." + 
+            buildSSMLSpeechlet(CARD_TITLE,"It's not working." + "[Sound effect crash]" + "Captain we should surrender." + 
                 "It’s a lost cause. Do you want to surrender?", "", false));
     }
 }
@@ -1000,7 +1000,7 @@ function handleEvent205(intentName,session,callback){
     }else{
         globalcurrentEventIndex = 205;
         callback(session.attributes,
-        buildSpeechletResponse(CARD_TITLE,"Captain, we need to decide now. Do you want to surrender?", "", false));
+        buildSSMLSpeechlet(CARD_TITLE,"Captain, we need to decide now. Do you want to surrender?", "", false));
     }
 
 }
