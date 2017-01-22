@@ -5,8 +5,8 @@ var globalcurrentEventIndex = 0;
 var shipAttack = 0;
 var shipDefense = 0;
 var shipSpeed = 0;
-var playerRP = 0;
-var shipHP = 0;
+var playerRP = 10;
+var shipHP = 10;
 var stormAction1 = "";
 var stormAction2 = "";
 var notUnderstood = "I'm sorry, captain. I didn't understand your orders. Let me try again. ";
@@ -218,6 +218,27 @@ function onIntent(intentRequest, session, callback) {
         case 11:
             callback(session.attributes,
                 handleEvent11(intentName, session, callback));
+            break;
+
+        case 101:
+            callback(session.attributes,
+                handleEvent101(intentName, session, callback));
+            break;
+
+        case 102:
+            callback(session.attributes,
+                handleEvent102(intentName, session, callback));
+            break;
+
+        case 103:
+            callback(session.attributes,
+                handleEvent103(intentName, session, callback));
+            break;
+
+        case 104:
+            callback(session.attributes,
+                handleEvent104(intentName, session, callback));
+
     }
 
     // if ("AMAZON.NoIntent" === intentName){
@@ -488,6 +509,12 @@ function handleEvent7(intentName,session,callback){ //Would you like to inspect 
 
 function handleEvent8(intentName,session,callback){ // ...getting to know the crew on your own terms. Should I arrange a meeting?
 
+    var speech = "Captain, a storm will be fully upon us soon" + 
+                "It's bad and I fear it's only going to get worse." +
+                "We won't be able to find a port in time, but we could 'drop anchor'," +
+                "'reef the sails', or maybe 'lay ahull and ride it out'" +
+                "What say you?";
+
     if ("AMAZON.YesIntent" === intentName){
         // sessionAttributes.currentEventIndex = 3;
         globalcurrentEventIndex = 9;
@@ -497,9 +524,10 @@ function handleEvent8(intentName,session,callback){ // ...getting to know the cr
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
-        globalcurrentEventIndex = 100;
+        globalcurrentEventIndex = 101;
+        lastQuestion = speech;
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "Very well then. I'll be in my bunk should you need me. Good evening to you. [WAVE SOUND SCENE CHANGE]" ,"", false));
+            buildSpeechletResponse(CARD_TITLE, "Very well then. I'll be in my bunk should you need me. Good evening to you. [WAVE SOUND SCENE CHANGE]" + speech ,"", false));
     }
 
     else {
@@ -512,13 +540,20 @@ function handleEvent8(intentName,session,callback){ // ...getting to know the cr
 
 function handleEvent9(intentName,session,callback){ //Sailing Master Carrington might be a good choice. Would you like to speak with him?
 
+    var speech = "Captain, a storm will be fully upon us soon" + 
+                "It's bad and I fear it's only going to get worse." +
+                "We won't be able to find a port in time, but we could 'drop anchor'," +
+                "'reef the sails', or maybe 'lay ahull and ride it out'" +
+                "What say you?";
+
     if ("AMAZON.YesIntent" === intentName){
         // sessionAttributes.currentEventIndex = 3;
-        globalcurrentEventIndex = 100;
+        globalcurrentEventIndex = 101;
         shipSpeed += 1;
         playerRP += 1;
+        lastQuestion = speech;
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "[SM AUDIO FILE] [WAVES] [SCENE CHANGE]" , "", false));
+            buildSpeechletResponse(CARD_TITLE, "[SM AUDIO FILE] [WAVES] [SCENE CHANGE]" + speech , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
@@ -537,13 +572,20 @@ function handleEvent9(intentName,session,callback){ //Sailing Master Carrington 
 
 function handleEvent10(intentName,session,callback){ //What do you say to our boatswain Flockheart. Would you like to speak with him?
 
+    var speech = "Captain, a storm will be fully upon us soon" + 
+                "It's bad and I fear it's only going to get worse." +
+                "We won't be able to find a port in time, but we could 'drop anchor'," +
+                "'reef the sails', or maybe 'lay ahull and ride it out'" +
+                "What say you?";
+
     if ("AMAZON.YesIntent" === intentName){
         // sessionAttributes.currentEventIndex = 3;
         globalcurrentEventIndex = 100;
         shipDefense += 1;
         playerRP += 1;
+        lastQuestion = speech;
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "[B AUDIO FILE] [WAVES] [SCENE CHANGE]" , "", false));
+            buildSpeechletResponse(CARD_TITLE, "[B AUDIO FILE] [WAVES] [SCENE CHANGE]" + speech , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
@@ -562,19 +604,251 @@ function handleEvent10(intentName,session,callback){ //What do you say to our bo
 
 function handleEvent11(intentName,session,callback){ //I can recommend our Gunner Master Bramley. Would you like to speak with him?
 
+    var yesSpeech = "Captain, a storm will be fully upon us soon" + 
+                "It's bad and I fear it's only going to get worse." +
+                "We won't be able to find a port in time, but we could 'drop anchor'," +
+                "'reef the sails', or maybe 'lay ahull and ride it out'" +
+                "What say you?";
+
+    var noSpeech = "Very well then. I'll be in my bunk should you need me. Good evening to you. Captain, a storm will be fully upon us soon" + 
+                "It's bad and I fear it's only going to get worse." +
+                "We won't be able to find a port in time, but we could 'drop anchor'," +
+                "'reef the sails', or maybe 'lay ahull and ride it out'" +
+                "What say you?";
+
     if ("AMAZON.YesIntent" === intentName){
         // sessionAttributes.currentEventIndex = 3;
-        globalcurrentEventIndex = 100;
+        globalcurrentEventIndex = 101;
         shipAttack += 1;
         playerRP += 1;
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "[GM AUDIO FILE] [WAVES] [SCENE CHANGE]" , "", false));
+            buildSpeechletResponse(CARD_TITLE, yesSpeech, "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
-        globalcurrentEventIndex = 100;
+        globalcurrentEventIndex = 101;
         callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "Very well then. I'll be in my bunk should you need me. Good evening to you. [WAVE SOUND SCENE CHANGE]" ,"", false));
+            buildSpeechletResponse(CARD_TITLE, noSpeech,"", false));
     }
 
+}
+
+function handleEvent101(intentName, session, callback) {
+    var speech;
+    if ("DropAnchorIntent" === intentName){
+        globalcurrentEventIndex = 102;
+        stormAction1 = "dropanchor";
+        playerRP -= 2;      
+        shipHP -= 2;
+        
+        speech = "Aye aye Captain! Carrington! Aim the bau into the wind! Sailors! Drop anchor!" + 
+                "<break time='0.5s'/> The storm is intensifying! I pray that we'll make it through safely!" +
+                "<break time='0.5s'/>We could 'Reef the sails', 'heave to', or 'run off downwind'." +
+                "What would you have us do now, sir?";
+                
+        callback(session.attributes,
+            buildSpeechletResponseWithoutCard( speech, "", true));
+    }
+    else if ("ReefSailsIntent" === intentName){
+        globalcurrentEventIndex = 102;
+        stormAction1 = "reefsails";
+        playerRP += 2;
+        
+        speech = "Aye aye Captain! Carrington! Turn toward the wind! We're reefing the main sail. Sailors! Ease the mainsheet and furl the jib!" + 
+                "<break time='0.5s'/> The storm is intensifying! I pray that we'll make it through safely!" +
+                "We could 'drop anchor', 'heave to', or 'run off downwind'." +
+                "What would you have us do now, sir?";
+                
+        callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+    }
+    else if ("LayAhull" === intentName){
+        globalcurrentEventIndex = 102;
+        stormAction1 = "layahull";
+        playerRP += 1;      
+
+        speech = "Aye aye Captain! Trim the sails! Batten down the hatches! Carrington, lock the rudder windward!" + 
+                "Then get below deck! We're trusting the ship to ride this storm out!" + 
+                "<break time='0.5s'/> The storm is intensifying! I pray that we'll make it through safely!" +
+                "We could 'drop anchor', 'heave to', or 'run off downwind'." +
+                "What would you have us do now, sir?";
+                
+        callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+    }else{
+        globalcurrentEventIndex = 101;
+        speech = "Captain! We can't hear your command over the crashing of the storm!";
+        callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+    }
+}
+
+function handleEvent102(intentName, session, callback) {
+    var speech;
+    if ("DropAnchorIntent" === intentName){
+        if (stormAction1 == "dropanchor"){
+            globalcurrentEventIndex = 102;
+            //prevent dupe
+            speech = "Captain! Anchors are already down and we are running out of options!" +
+            "<break time='0.5s'/>We could 'Reef the sails', 'heave to', or 'run off downwind'." +
+            "What would you have us do now, sir?";
+        }else{
+            globalcurrentEventIndex = 103;
+            stormAction2 = "dropanchor";
+            playerRP -= 1;      
+            shipHP -=1;
+                speech = "Aye aye Captain! Carrington! Aim the bau into the wind! Sailors! Drop anchor!" + 
+                "<break time='3.5s'/> Well, Captain, we were able to weather the storm." +
+                "<break time='1.5s'/> Not too shabby. We only took a little damage and the crew survived. We'll do better next time." +
+                "<break time='.5s'/> The men have finished their meals and are on deck having drinks." +
+                "They are sure to start singing and dancing soon. Would you like to join them?";
+        }
+                
+        callback(session.attributes,
+            buildSpeechletResponseWithoutCard( speech, "", true));
+    }
+    else if ("ReefSailsIntent" === intentName){
+        globalcurrentEventIndex = 103;
+        stormAction2 = "dropanchor";
+        playerRP -= 1;      
+        shipHP -=1;
+        
+        speech = "Aye aye Captain! Carrington! Turn toward the wind! We're reefing the main sail." +
+        "Sailors! Ease the mainsheet and furl the jib!" +
+        "<break time='3.5s'/> Well, Captain, we were able to weather the storm.";
+        
+        if (stormAction1 == "dropanchor"){
+            //critical fail
+            playerRP -= 1;      
+            shipHP -=1;
+            speech +=        
+                "<break time='1.5s'/>You could have done better out there. Unfortunately, the ship took some damage." +
+                "But I'm sure you'll find your sea legs soon enough. The crew was also disappointed, and there were a few minor injuries.";
+        }else{
+            speech += "<break time='1.5s'/> Not too shabby. We only took a little damage and the crew survived. We'll do better next time.";
+        }
+        //add time passing sound
+        speech += "The men have finished their meals and are on deck having drinks. They are sure to start singing and dancing soon. Would you like to join them?";
+         callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+    }
+    else if ("HeaveIntent" === intentName){
+        globalcurrentEventIndex = 103;
+        stormAction2 = "heave";
+        playerRP += 1;
+        
+        speech = "Aye aye Captain! Sailors! Trim the jib aback! Trim the main in hard!" +
+        "Carrington! Tack across the wind and aim for 60 degrees off wind! Lash the helm and then get below deck!" +
+        "<break time='3.5s'/> Well, Captain, we were able to weather the storm.";
+        
+        if (stormAction1 == "layahull" || stormAction1 == "reefsails"){
+            //solid run
+            playerRP += 1;      
+            speech += "<break time='1.5s'/> Great work Captain! The ship took no damage, and I think the crew was impressed.";     
+        }
+        else{
+            speech += "<break time='1.5s'/> Not too shabby. We only took a little damage and the crew survived. We'll do better next time.";
+        }
+        //add time passing sound
+        speech += "The men have finished their meals and are on deck having drinks. They are sure to start singing and dancing soon. Would you like to join them?";
+        callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+    }
+    else if ("RunIntent" === intentName){
+        globalcurrentEventIndex = 103;
+        stormAction2 = "layahull";
+        playerRP += 2;
+        
+        speech = "Aye aye Captain! Sailors! Trim the main sail! And furl the head sail!" +
+        "Carrington! Keep the wind and the waves on our stern quarters or directly abaft!" +
+        "<break time='3.5s'/> Well, Captain, we were able to weather the storm.";
+        
+        if (stormAction1 == "reefsails"){
+            //perfect run
+            playerRP += 1;      
+            speech +=  "You were amazing Captain! I was sure that rumors of your skill had been somewhat exaggerated." +
+            "But you certainly upheld your reputation. The crew was greatly impressed too!";
+        }
+        else if (stormAction1 == "layahull"){
+            //solid run
+            playerRP += 1;      
+            speech += "<break time='1.5s'/> Great work Captain! The ship took no damage, and I think the crew was impressed.";            
+        }
+        else{
+            speech += "<break time='1.5s'/> Not too shabby. We only took a little damage and the crew survived. We'll do better next time.";
+        }
+        //add time passing sound
+        speech += "The men have finished their meals and are on deck having drinks. They are sure to start singing and dancing soon. Would you like to join them?";
+        callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+    }
+    else{
+        globalcurrentEventIndex = 102;
+        speech = "Captain! We can't hear your command over the crashing of the storm!";
+        callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+    }
+}
+
+function handleEvent103(intentName, session, callback) {
+    var speech;
+    if ("AMAZON.NoIntent" === intentName){
+        globalcurrentEventIndex = 200;
+        
+        speech = "Very good sir. I hope that you rest well.<break time='1.5s'/>Goodnight";
+        
+        //Add first questions from next chapter
+        speech += "";
+            callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+    }else if ("AMAZON.YesIntent" === intentName){
+        globalcurrentEventIndex = 104;
+        playerRP += 1;   
+                    
+        speech = "I'm sure it will be great fun! I wonder what song they are singing." +
+        //add sound clip
+        //[Audio File]+
+        "<break time='1.5s'/> Oh, it's 'Ten Thousand Miles Away'!" +
+        "Shall we sing along?";
+        
+            callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+    }
+}
+
+function handleEvent104(intentName, session, callback) {
+    var speech;
+    if ("AMAZON.NoIntent" === intentName){
+        globalcurrentEventIndex = 200;
+        
+        speech = "OK. We'll just listen" +
+                //add sound clip
+        //[Audio File]+
+        "That was fun! I suppose we'd best rest for tomorrow. Who knows what the new day will bring. I hope that you rest well Captain.";
+
+        //Inert first scene from next chapter
+        speech += "";
+            callback(session.attributes,
+        buildSpeechletResponse(CARD_TITLE,speech,"", false));
+    }
+    else if ("AMAZON.YesIntent" === intentName){
+        globalcurrentEventIndex = 200;
+        playerRP += 2;   
+        //add sound clip
+        //speech = [Audio File]+
+        speech += "That was so much fun! I suppose we'd best rest for tomorrow. Who knows what the new day will bring. I hope that you rest well Captain.";
+
+        //Inert first scene from next chapter
+        speech += "";
+        
+            callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+    }
+    else{
+        globalcurrentEventIndex = 104;
+                
+        speech += "Captain, what do you say? Should we join in?";
+            callback(session.attributes,
+            buildSpeechletResponse(CARD_TITLE,speech,"", false));
+    }
 }
