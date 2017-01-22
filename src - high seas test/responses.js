@@ -3,7 +3,10 @@
 'use strict';
 
 module.exports.firstScene = () =>
-	'Ho There! Greetings Captain!  I’m pleased to make your acquaintance. I’m your first mate, Alexa. A beautiful day for the maiden voyage of our beauteous vessel. The sun is shining, the breeze feels good against the skin.  Which one is she?  Is it the Xebec, a masterful balance of speed and strength? Popluar for a  cargo mission such as ours?';
+	'Ho There! Greetings Captain!  I’m pleased to make your acquaintance. I’m your first mate, Alexa. A beautiful day for the maiden voyage of our beauteous vessel. The sun is shining, the breeze feels good against the skin.';
+
+mobile.exports.firstXebec = () => 
+	'Which one is she?  Is it the Xebec, a masterful balance of speed and strength? Popluar for a  cargo mission such as ours?';
 
 module.exports.firstBrigandier = () =>
 	'Oh, so you went a different way. Is it that swift brigantine there? Lighly armed, but such speed, and impressive maneuverabity?';
@@ -26,6 +29,9 @@ module.exports.goodbye = () =>
 module.exports.yesOrNo = () =>
 	'So is that a yes or a no...?';
 
+module.exports.gameStartHelp = () =>
+	'How to play the game';
+
 module.exports.ask = function(sayWhat, continuation) {
   // updates
   this.attributes.previousState = this.handler.state;
@@ -38,3 +44,4 @@ module.exports.ask = function(sayWhat, continuation) {
 module.exports.tell = function(tellWhat) {
   this.emit(':tell', tellWhat);
 };
+

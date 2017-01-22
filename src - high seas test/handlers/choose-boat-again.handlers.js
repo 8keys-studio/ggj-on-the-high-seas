@@ -6,26 +6,20 @@ const mixinHandlers = require('../modules/utils').mixinHandlers;
 const GAME_STATES = require('../enums').GAME_STATES;
 const res = require('../responses');
 
-module.exports = Alexa.CreateStateHandler(GAME_STATES.FIRST_SCENE, mixinHandlers(coreHandlers, {
+module.exports = Alexa.CreateStateHandler(GAME_STATES.CHOOSE_BOAT_AGAIN, mixinHandlers(coreHandlers, {
 
   'AMAZON.YesIntent': function() {
 
-    // updates
-    //this.handler.state = this.attributes.previousState;
-
-    // response
-    //this.emit(':ask', this.attributes.previousResponse);
-
     this.handler.state = CHOOSE_MAN.PLAYING;
 
-    res.ask.call(this res.firstBoatChosen());
+    res.ask.call(this, res.firstBoatChosen());
   },
 
   'AMAZON.NoIntent': function() {
 
-    this.handler.state = CHOOSE_BOAT.PLAYING;
+    this.handler.state = FIRST_SCENE.PLAYING;
 
-    res.ask.call(this, res.firstBrigandier());
+    res.ask.call(this, res.firstXebec());
   },
 
   'AMAZON.HelpIntent': function() {
