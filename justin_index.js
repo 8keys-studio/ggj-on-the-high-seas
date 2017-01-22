@@ -299,22 +299,22 @@ function handleEvent0(intentName, session, callback) { //Xebec?
         shipSpeed = 1;
         shipDefense = 1;
         lastQuestion = "We have a bit of extra time, would you like to talk to one of the crew a bit more?";
-        callback(session.attributes,
-            buildSpeechletResponse(CARD_TITLE, "A most glorious choice, my captain. Our crew gathers at last." + 
-                "Let me make introductions. This, sir, is our Sailing Master, Carrington. An excellent navigator is he," + 
-                "and swiftly gets to the destination. [insert audio file here]  And here is Flockhart, our Boatswain, in" +
-                "charge of maintenance and supplies, as well. He knows a ship from bottom to top, and he meets challenges" + 
-                "of a voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
-                "invaluable should we run into trouble, God help us. [MG: An honor, captain.] A fine crew if ever I saw one" + 
-                "Captain. We have a bit of extra time, would you like to talk to one of them a bit more?", "", false));
         // callback(session.attributes,
-        //     buildSSMLSpeechlet(CARD_TITLE, "<speak>A most glorious choice, my captain. Our crew gathers at last. " + 
+        //     buildSpeechletResponse(CARD_TITLE, "A most glorious choice, my captain. Our crew gathers at last." + 
         //         "Let me make introductions. This, sir, is our Sailing Master, Carrington. An excellent navigator is he," + 
-        //         "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley+01+-+An+honor.mp3' />   And here is Flockhart, our Boatswain, in" +
+        //         "and swiftly gets to the destination. [insert audio file here]  And here is Flockhart, our Boatswain, in" +
         //         "charge of maintenance and supplies, as well. He knows a ship from bottom to top, and he meets challenges" + 
         //         "of a voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
         //         "invaluable should we run into trouble, God help us. [MG: An honor, captain.] A fine crew if ever I saw one" + 
-        //         "Captain. We have a bit of extra time, would you like to talk to one of them a bit more?</speak>", "", true));
+        //         "Captain. We have a bit of extra time, would you like to talk to one of them a bit more?", "", false));
+        callback(session.attributes,
+            buildSSMLSpeechlet(CARD_TITLE, "<speak>A most glorious choice, my captain. Our crew gathers at last. " + 
+                "Let me make introductions. This, sir, is our Sailing Master, Carrington. An excellent navigator is he," + 
+                "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/carrington1fix.mp3'/> And here is Flockhart, our Boatswain, in" +
+                "charge of maintenance and supplies, as well. He knows a ship from bottom to top, and he meets challenges" + 
+                "of a voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
+                "invaluable should we run into trouble, God help us. [MG: An honor, captain.] A fine crew if ever I saw one" + 
+                "Captain. We have a bit of extra time, would you like to talk to one of them a bit more?</speak>", "", true));
     }
     else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 1;
