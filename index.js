@@ -36,6 +36,7 @@ exports.handler = function (event, context) {
                 });
         } else if (event.request.type === "SessionEndedRequest") {
             onSessionEnded(event.request, event.session);
+            globalcurrentEventIndex = 0;
             context.succeed();
         }
     } catch (e) {
@@ -63,7 +64,7 @@ function onLaunch(launchRequest, session, callback) {
 }
 
 function getWelcomeResponse(callback) {
-    var intro_text = "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/WoodCreakGullWaves.mp3'/>" + "Ahoy there! Greetings Captain!  I’m pleased to make your acquaintance. I’m your first mate, Alexa. It is a beautiful day for the maiden voyage of our seafaring vessel. The sun is shining, the breeze feels good against the skin.";
+    var intro_text = "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/WoodCreakGullWaves-CD.mp3'/>" + "Ahoy there! Greetings Captain!  I’m pleased to make your acquaintance. I’m your first mate, Alexa. It is a beautiful day for the maiden voyage of our seafaring vessel. The sun is shining, the breeze feels good against the skin. ";
     var question_text =  "Which one is our ship? Is it the Xebec, a masterful balance of speed and strength? Popular for a cargo mission such as ours?";
     var sessionAttributes = {},
         speechOutput = intro_text + question_text,
@@ -127,14 +128,15 @@ function buildSpeechletResponseWithoutCard(output, repromptText, shouldEndSessio
 }
 
 function buildSSMLSpeechlet (title, output, repromptText, shouldEndSession) {
+    var debugEvent = "globalcurrentEventIndex =" + globalcurrentEventIndex.toString();
     return {
         outputSpeech: {
             type: "SSML",
-            ssml: "<speak>" output + "</speak>"
+            ssml: "<speak>" + output + "</speak>"
         },
         card: {
             type: "Simple",
-            title: "SessionSpeechlet - " + title,
+            title: "SessionSpeechlet - " + debugEvent,
             content: "SessionSpeechlet - " + output
         },
         reprompt: {
@@ -309,20 +311,20 @@ function handleEvent0(intentName, session, callback) { //Xebec?
         shipDefense = 1;
         lastQuestion = "We have a bit of extra time, would you like to talk to one of your crew a bit more?";
         // callback(session.attributes,
-        //     buildSSMLSpeechlet(CARD_TITLE, "A most glorious choice, my captain. Our crew gathers at last." + 
-        //         "Let me make introductions. This, sir, is our Sailing Master, Carrington. An excellent navigator is he," + 
-        //         "and swiftly gets to the destination. [insert audio file here]  And here is Flockhart, our Boatswain, in" +
+        //     buildSSMLSpeechlet(CARD_TITLE, "A most glorious ship, my captain. Our crew gathers at last. " + 
+        //         "Let me make introductions. This, sir, is our Sailing Master, Carrington. A world-class navigator," + 
+        //        "who will get us swiftly to our destination. [insert audio file here]  And here is Flockhart, our Boatswain, in" +
         //         "charge of maintenance and supplies, as well. He knows a ship from bottom to top, and he meets challenges" + 
         //         "of a voyage. [B: Looking foward to embarkation, Sir.]  And this is our Master Gunner, Bramley. He'll be" + 
         //         "invaluable should we run into trouble, God help us. [MG: An honor, captain.] A fine crew if ever I saw one" + 
         //         "Captain. We have a bit of extra time, would you like to talk to one of them a bit more?", "", false));
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "A most glorious choice my captain. Our crew gathers at last. " + 
-                "Let me make introductions. This sir is our Sailing Master, Carrington. An excellent navigator is he," + 
-                "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington01-Goodday-CD.mp3'/> And here is Flockheart, our Boatswain, in" +
+            buildSSMLSpeechlet(CARD_TITLE, "A most glorious ship my captain. Our crew gathers at last. " + 
+                "Let me make introductions. This sir is our Sailing Master, Carrington. A world-class navigator," + 
+                "who will get us swiftly to our destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington01-Goodday-CD.mp3'/> And here is Flockheart, our Boatswain, in" +
                 "charge of maintenance and supplies. He knows a ship from bottom to top, and he meets the challenges" + 
                 "of any voyage. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart01-Embark-CD.mp3'/>  And this is our Master Gunner, Bramley. He'll be" + 
-                "invaluable should we run into pirate trouble. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley01-Honor-CD.mp3'/> A fine crew if ever I saw one." + 
+                "invaluable should we run into pirate trouble. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley01-Honor-CD.mp3'/> A fine crew if ever I saw one. " + 
                 "We have a bit of extra time, would you like to talk to one of your crew a bit more?", "", false));
     }
     else if ("AMAZON.NoIntent" === intentName){
@@ -350,13 +352,13 @@ function handleEvent1(intentName, session, callback) { //brigantine?
         globalcurrentEventIndex = 3;
         lastQuestion = "We have a bit of extra time, would you like to talk to one of your crew a bit more?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "A most glorious choice my captain. Our crew gathers at last. " + 
-                "Let me make introductions. This sir is our Sailing Master, Carrington. An excellent navigator is he," + 
-                "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington01-Goodday-CD.mp3'/> And here is Flockheart, our Boatswain, in" +
+            buildSSMLSpeechlet(CARD_TITLE, "A most glorious ship my captain. Our crew gathers at last. " + 
+                "Let me make introductions. This sir is our Sailing Master, Carrington. A world-class navigator," + 
+                "who will get us swiftly to our destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington01-Goodday-CD.mp3'/> And here is Flockheart, our Boatswain, in" +
                 "charge of maintenance and supplies. He knows a ship from bottom to top, and he meets the challenges" + 
-                "of any voyage. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart01-Embark-CD.mp3'/>  And this is our Master Gunner, Bramley. He'll be" + 
-                "invaluable should we run into pirate trouble. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley01-Honor-CD.mp3'/> A fine crew if ever I saw one." + 
-                "We have a bit of extra time, would you like to talk to one of your crew a bit more?", "", false));
+                "of any voyage. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart01-Embark-CD.mp3'/>  And this is our Master Gunner, Bramley.  An invaluable crew member" + 
+                "should we run into pirate trouble. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley01-Honor-CD.mp3'/>" + "<p>A fine crew if ever I saw one. </p> "
+                + "<p>We have a bit of extra time, would you like to talk to one of your crew a bit more?</p>", "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
@@ -382,12 +384,12 @@ function handleEvent2(intentName,session,callback) { //galleon?
         globalcurrentEventIndex = 3;
         lastQuestion = "We have a bit of extra time, would you like to talk to one of the crew a bit more?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "A most glorious choice my captain. Our crew gathers at last. " + 
-                "Let me make introductions. This sir is our Sailing Master, Carrington. An excellent navigator is he," + 
-                "and swiftly gets to the destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington01-Goodday-CD.mp3'/> And here is Flockheart, our Boatswain, in" +
+            buildSSMLSpeechlet(CARD_TITLE, "A most glorious ship my captain. Our crew gathers at last. " + 
+                "Let me make introductions. This sir is our Sailing Master, Carrington. A world-class navigator," + 
+                "who will get us swiftly to our destination. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington01-Goodday-CD.mp3'/> And here is Flockheart, our Boatswain, in" +
                 "charge of maintenance and supplies. He knows a ship from bottom to top, and he meets the challenges" + 
                 "of any voyage. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart01-Embark-CD.mp3'/>  And this is our Master Gunner, Bramley. He'll be" + 
-                "invaluable should we run into pirate trouble. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley01-Honor-CD.mp3'/> A fine crew if ever I saw one." + 
+                "invaluable should we run into pirate trouble. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley01-Honor-CD.mp3'/> A fine crew if ever I saw one. " + 
                 "We have a bit of extra time, would you like to talk to one of your crew a bit more?", "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
@@ -419,10 +421,10 @@ function handleEvent3(intentName,session,callback) { //We have a bit of extra ti
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 7;
-        lastQuestion = "Would you like to inspect the ship further before we depart, or set off immediately?";
+        lastQuestion = "We could inspect the ship further before we depart, or shall we set off immediately?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "Aye, then let us dally no more. Captain to the deck! <audio src='https://s3.amazonaws.com/dead-bots-dialogue/FoodstepsWaterBell.mp3'/>"  + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Chime-CD.mp3'/>" + " <break time='0.5s'/>" +
-            "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" ,"", false));
+            buildSSMLSpeechlet(CARD_TITLE, "Aye, then let us dally no more. Captain to the deck! <audio src='https://s3.amazonaws.com/dead-bots-dialogue/FootstepsWaterBell-CD.mp3'/>"  + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Chime-CD.mp3'/>" + " <break time='0.5s'/>" +
+            "Captain, the crew is ready to set sail. We could inspect the ship further before we depart, or shall we set off immediately?" ,"", false));
     }
 
     else {
@@ -440,16 +442,16 @@ function handleEvent4(intentName,session,callback){ //"Perhaps sailing master Ca
         globalcurrentEventIndex = 7;
         shipSpeed += 1;
         playerRP += 1;
-        lastQuestion = "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?";
+        lastQuestion = "Captain, the crew is ready to set sail. We could inspect the ship further before we depart, or should we set off immediately?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington02-Team-CD.mp3'/>" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington02-Team-CD.mp3'/>" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. We could inspect the ship further before we depart, or shall we set off immediately?" , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 5;
         lastQuestion = "Would you like to speak to our boatswain, Flockheart?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "Then maybe our boatswain, Flockheart." ,"", false));
+            buildSSMLSpeechlet(CARD_TITLE, "Then maybe our boatswain, Flockheart. " ,"", false));
     }
 
     else {
@@ -460,15 +462,15 @@ function handleEvent4(intentName,session,callback){ //"Perhaps sailing master Ca
 
 }
 
-function handleEvent5(intentName,session,callback){ //"Then maybe our boatswain, Flockheart."
+function handleEvent5(intentName,session,callback){ //"Then maybe our boatswain, Flockheart. "
     if ("AMAZON.YesIntent" === intentName){
         // sessionAttributes.currentEventIndex = 3;
         globalcurrentEventIndex = 7;
         shipDefense += 1;
         playerRP += 1;
-        lastQuestion = "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?";
+        lastQuestion = "Captain, the crew is ready to set sail. We could inspect the ship further before we depart, or shall we set off immediately?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart02-ShipShape-CD.mp3'/>" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart02-ShipShape-CD.mp3'/>" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. We could inspect the ship further before we depart, or shall we set off immediately?" , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
@@ -491,17 +493,17 @@ function handleEvent6(intentName,session,callback){ //"Then surely Gunner Master
         globalcurrentEventIndex = 7;
         shipAttack += 1;
         playerRP += 1;
-        lastQuestion = "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?";
+        lastQuestion = "Captain, the crew is ready to set sail. We could inspect the ship further before we depart, or shall we set off immediately?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley02-Danger-CD.mp3'/>" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" , "", false));
+            buildSSMLSpeechlet(CARD_TITLE, "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley02-Danger-CD.mp3'/>" + "<break time='0.5s'/>" + "Captain, the crew is ready to set sail. We could inspect the ship further before we depart, or shall we set off immediately?" , "", false));
     }
         else if ("AMAZON.NoIntent" === intentName){
         // sessionAttributes.currentEventIndex = 2;
         globalcurrentEventIndex = 7;
-        lastQuestion = "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?";
+        lastQuestion = "Captain, the crew is ready to set sail. We could inspect the ship further before we depart, or shall we set off immediately?";
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "Aye, then let us dally no more. Captain to the deck! <audio src='https://s3.amazonaws.com/dead-bots-dialogue/FoodstepsWaterBell.mp3'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Chime-CD.mp3'/>" + " <break time='0.5s'/>" +
-            "Captain, the crew is ready to set sail. Would you like to inspect the ship further before we depart, or set off immediately?" ,"", false));
+            buildSSMLSpeechlet(CARD_TITLE, "Aye, then let us dally no more. Captain to the deck! <audio src='https://s3.amazonaws.com/dead-bots-dialogue/FootstepsWaterBell-CD.mp3'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Chime-CD.mp3'/>" + " <break time='0.5s'/>" +
+            "Captain, the crew is ready to set sail. We could inspect the ship further before we depart, or shall we set off immediately?" ,"", false));
     }
             else {
         var responseNum = Math.floor(Math.random() * 2);
@@ -515,7 +517,7 @@ function handleEvent7(intentName,session,callback){ //Would you like to inspect 
 
     var inevtiableEventSpeech = "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/SettingSail-CD.mp3'/>" + "All is well and underway. According to the manifest, we're carrying 342 chests of tea to port at Boston Harbor. "
                                 + "Not very exciting. But anyway, rest assured, you can always ask me the ship's goings on. I've got my ear to the " +
-                                "deck. You can ask for the Ship Status, or the Crew Status, and I'll tell you all. But I also recommend getting to know "
+                                "deck. You can ask for the Ship Status, or the Crew Status, and I'll tell you everything you need to know. But I also recommend getting to know "
                                 +"the crew on your own terms. Should I arrange a meeting?";
 
     if ("InspectIntent" === intentName){
@@ -524,7 +526,7 @@ function handleEvent7(intentName,session,callback){ //Would you like to inspect 
         lastQuestion = "Shall I arrange a meeting with one of your crew members?";
         callback(session.attributes,
             buildSSMLSpeechlet(CARD_TITLE, "A wise decision captain, I'm sure we'll find everything in excellent shape. " +
-                 + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Footstepswood.mp3'/>" + "As you can see, your crew has been hard at work preparing for our journey. <break time='0.5s'/>" +
+                 + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Footstepswood-CD.mp3'/>" + "As you can see, your crew has been hard at work preparing for our journey. <break time='0.5s'/>" +
                 "Just through here are your quarters. I apologize but we haven't been able to remove the skull that the previous owner left behind. " +
                 "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Skull01-Cursed-CD.mp3'/> Yeah yeah, I've already heard your sob story. Don't let him get started Captain you'll never hear the end. " +
                 "I'll just throw this tarp over him so he won't bother you anymore. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/Skull02-Muffled-CD.mp3'/> <break time='0.5s'/>" + 
@@ -549,10 +551,10 @@ function handleEvent7(intentName,session,callback){ //Would you like to inspect 
 function handleEvent8(intentName,session,callback){ // ...getting to know the crew on your own terms. Should I arrange a meeting?
 
     var speech = "Captain, a storm will be fully upon us soon" + 
-                "It's bad and I fear it's only going to get worse." + 
+                "It's bad,, and I fear it's only going to get worse. " + 
                 "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Thunder-CD.mp3'/>" +
                 "We won't be able to find a port in time, but we could 'drop anchor'," +
-                "'reef the sails', or maybe 'lay ahull and ride it out'" +
+                "'reef the sails', or, maybe, 'lay ahull and ride it out'" +
                 "What say you?";
 
     if ("AMAZON.YesIntent" === intentName){
@@ -567,8 +569,8 @@ function handleEvent8(intentName,session,callback){ // ...getting to know the cr
         globalcurrentEventIndex = 101;
         lastQuestion = speech;
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE, "Very well then. I'll be in my bunk should you need me. Good evening to you."  
-                + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Waves-CD.mp3'/>" 
+            buildSSMLSpeechlet(CARD_TITLE, "Very well then. I'll be in my bunk should you need me. Good evening to you. "  
+                + "<audio src='https://s3-us-west-2.amazonaws.com/game-audio/deadbots/SFX/Waves2_conv.mp3'/>" 
                 + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Chime-CD.mp3'/>" 
                 + speech ,"", false));
     }
@@ -584,9 +586,9 @@ function handleEvent8(intentName,session,callback){ // ...getting to know the cr
 function handleEvent9(intentName,session,callback){ //Sailing Master Carrington might be a good choice. Would you like to speak with him?
 
     var speech = "Captain, a storm will be fully upon us soon" + 
-                "It's bad and I fear it's only going to get worse." + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Thunder-CD.mp3'/>" +
+                "It's bad,, and I fear it's only going to get worse. " + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Thunder-CD.mp3'/>" +
                 "We won't be able to find a port in time, but we could 'drop anchor'," +
-                "'reef the sails', or maybe 'lay ahull and ride it out'" +
+                "'reef the sails', or, maybe, 'lay ahull and ride it out'" +
                 "What say you?";
 
     if ("AMAZON.YesIntent" === intentName){
@@ -619,9 +621,9 @@ function handleEvent9(intentName,session,callback){ //Sailing Master Carrington 
 function handleEvent10(intentName,session,callback){ //What do you say to our boatswain Flockheart. Would you like to speak with him?
 
     var speech = "Captain, a storm will be fully upon us soon" + 
-                "It's bad and I fear it's only going to get worse." + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Thunder-CD.mp3'/>" +
+                "It's bad,, and I fear it's only going to get worse. " + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Thunder-CD.mp3'/>" +
                 "We won't be able to find a port in time, but we could 'drop anchor'," + 
-                "'reef the sails', or maybe 'lay ahull and ride it out'" +
+                "'reef the sails', or, maybe, 'lay ahull and ride it out'" +
                 "What say you?";
 
     if ("AMAZON.YesIntent" === intentName){
@@ -657,20 +659,20 @@ function handleEvent11(intentName,session,callback){ //I can recommend our Gunne
                 + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Waves-CD.mp3'/>" 
                 + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Chime-CD.mp3'/>" 
                 + " Captain, a storm will be fully upon us soon" + 
-                "It's bad and I fear it's only going to get worse."  
+                "It's bad,, and I fear it's only going to get worse. "  
                 + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Thunder-CD.mp3'/>" +
                 "We won't be able to find a port in time, but we could 'drop anchor'," +
-                "'reef the sails', or maybe 'lay ahull and ride it out'" +
+                "'reef the sails', or, maybe, 'lay ahull and ride it out'" +
                 "What say you?";
 
-    var noSpeech = "Very well then. I'll be in my bunk should you need me. Good evening to you." 
+    var noSpeech = "Very well then. I'll be in my bunk should you need me. Good evening to you. " 
                 + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Waves-CD.mp3'/>" 
                 + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Chime-CD.mp3'/>" 
                 + " Captain, a storm will be fully upon us soon" + 
-                "It's bad and I fear it's only going to get worse." +
+                "It's bad,, and I fear it's only going to get worse. " +
                 "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Thunder-CD.mp3'/>" +
                 "We won't be able to find a port in time, but we could 'drop anchor'," +
-                "'reef the sails', or maybe 'lay ahull and ride it out'" +
+                "'reef the sails', or, maybe, 'lay ahull and ride it out'" +
                 "What say you?";
 
     if ("AMAZON.YesIntent" === intentName){
@@ -699,8 +701,8 @@ function handleEvent101(intentName, session, callback) {
         shipHP -= 2;
         
         speech = "Aye aye Captain! Carrington! Aim the bau into the wind! Sailors! Drop anchor!" + 
-                "<break time='0.5s'/>" + "The storm is intensifying! I pray that we'll make it through safely!" +
-                "<break time='0.5s'/>We could 'Reef the sails', 'heave to', or 'run off downwind'." +
+                "<break time='0.5s'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-audio/Storm-CD.mp3'/>" + "The storm is intensifying! I pray that we'll make it through safely!" +
+                "<break time='0.5s'/>We could 'Reef the sails', 'heave to', or 'run off downwind'. " +
                 "What would you have us do now, sir?";
                 
         callback(session.attributes,
@@ -712,8 +714,8 @@ function handleEvent101(intentName, session, callback) {
         playerRP += 2;
         
         speech = "Aye aye Captain! Carrington! Turn toward the wind! We're reefing the main sail. Sailors! Ease the mainsheet and furl the jib!" + 
-                "<break time='0.5s'/> The storm is intensifying! I pray that we'll make it through safely!" +
-                "We could 'drop anchor', 'heave to', or 'run off downwind'." +
+                "<break time='0.5s'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-audio/Storm-CD.mp3'/>" + "The storm is intensifying! I pray that we'll make it through safely!" +
+                "We could 'drop anchor', 'heave to', or 'run off downwind'. " +
                 "What would you have us do now, sir?";
                 
         callback(session.attributes,
@@ -726,8 +728,8 @@ function handleEvent101(intentName, session, callback) {
 
         speech = "Aye aye Captain! Trim the sails! Batten down the hatches! Carrington, lock the rudder windward!" + 
                 "Then get below deck! We're trusting the ship to ride this storm out!" + 
-                "<break time='0.5s'/> The storm is intensifying! I pray that we'll make it through safely!" +
-                "We could 'drop anchor', 'heave to', or 'run off downwind'." +
+                "<break time='0.5s'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-audio/Storm-CD.mp3'/>" + "The storm is intensifying! I pray that we'll make it through safely!" +
+                "We could 'drop anchor', 'heave to', or 'run off downwind'. " +
                 "What would you have us do now, sir?";
                 
         callback(session.attributes,
@@ -747,7 +749,7 @@ function handleEvent102(intentName, session, callback) {
             globalcurrentEventIndex = 102;
             //prevent dupe
             speech = "Captain! Anchors are already down and we are running out of options!" +
-            "<break time='0.5s'/>We could 'Reef the sails', 'heave to', or 'run off downwind'." +
+            "<break time='0.5s'/>" + "We could 'Reef the sails', 'heave to', or 'run off downwind'. " +
             "What would you have us do now, sir?";
         }else{
             globalcurrentEventIndex = 103;
@@ -755,14 +757,14 @@ function handleEvent102(intentName, session, callback) {
             playerRP -= 1;      
             shipHP -=1;
                 speech = "Aye aye Captain! Carrington! Aim the bau into the wind! Sailors! Drop anchor!" + 
-                "<break time='3.5s'/> Well, Captain, we were able to weather the storm." +
-                "<break time='1.5s'/> Not too shabby. We only took a little damage and the crew survived. We'll do better next time." +
-                "<break time='.5s'/> The men have finished their meals and are on deck having drinks." +
+                "<break time='3.5s'/> Well, Captain, we were able to weather the storm. " +
+                "<break time='1.5s'/> Not too shabby. We only took a little damage and the crew survived. We'll do better next time. " +
+                "<break time='.5s'/> The men have finished their meals and are on deck having drinks. " +
                 "They are sure to start singing and dancing soon. Would you like to join them?";
         }
                 
         callback(session.attributes,
-            buildSpeechletResponseWithoutCard( speech, "", true));
+            buildSSMLSpeechlet(CARD_TITLE, speech, "", false));
     }
     else if ("ReefSailsIntent" === intentName){
         globalcurrentEventIndex = 103;
@@ -770,19 +772,19 @@ function handleEvent102(intentName, session, callback) {
         playerRP -= 1;      
         shipHP -=1;
         
-        speech = "Aye aye Captain! Carrington! Turn toward the wind! We're reefing the main sail." +
+        speech = "Aye aye Captain! Carrington! Turn toward the wind! We're reefing the main sail. " +
         "Sailors! Ease the mainsheet and furl the jib!" +
-        "<break time='3.5s'/> Well, Captain, we were able to weather the storm.";
+        "<break time='2.5s'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-audio/Storm-CD.mp3'/>" + "Well, Captain, we were able to weather the storm. ";
         
         if (stormAction1 == "dropanchor"){
             //critical fail
             playerRP -= 1;      
             shipHP -=1;
             speech +=        
-                "<break time='1.5s'/>You could have done better out there. Unfortunately, the ship took some damage." +
-                "But I'm sure you'll find your sea legs soon enough. The crew was also disappointed, and there were a few minor injuries.";
+                "<break time='1.5s'/>You could have done better out there. Unfortunately, the ship took some damage. " +
+                "But I'm sure you'll find your sea legs soon enough. The crew was also disappointed, and there were a few minor injuries. ";
         }else{
-            speech += "<break time='1.5s'/> Not too shabby. We only took a little damage and the crew survived. We'll do better next time.";
+            speech += "<break time='1.5s'/> Not too shabby. We only took a little damage and the crew survived. We'll do better next time. ";
         }
         //add time passing sound
         speech += "The men have finished their meals and are on deck having drinks. They are sure to start singing and dancing soon. Would you like to join them?";
@@ -796,15 +798,15 @@ function handleEvent102(intentName, session, callback) {
         
         speech = "Aye aye Captain! Sailors! Trim the jib aback! Trim the main in hard!" +
         "Carrington! Tack across the wind and aim for 60 degrees off wind! Lash the helm and then get below deck!" +
-        "<break time='3.5s'/> Well, Captain, we were able to weather the storm.";
+        "<break time='2.5s'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-audio/Storm-CD.mp3'/>" + "Well, Captain, we were able to weather the storm. ";
         
         if (stormAction1 == "layahull" || stormAction1 == "reefsails"){
             //solid run
             playerRP += 1;      
-            speech += "<break time='1.5s'/> Great work Captain! The ship took no damage, and I think the crew was impressed.";     
+            speech += "<break time='1.5s'/> Great work Captain! The ship took no damage, and I think the crew was impressed. ";     
         }
         else{
-            speech += "<break time='1.5s'/> Not too shabby. We only took a little damage and the crew survived. We'll do better next time.";
+            speech += "<break time='1.5s'/> Not too shabby. We only took a little damage and the crew survived. We'll do better next time. ";
         }
         //add time passing sound
         speech += "The men have finished their meals and are on deck having drinks. They are sure to start singing and dancing soon. Would you like to join them?";
@@ -818,21 +820,21 @@ function handleEvent102(intentName, session, callback) {
         
         speech = "Aye aye Captain! Sailors! Trim the main sail! And furl the head sail!" +
         "Carrington! Keep the wind and the waves on our stern quarters or directly abaft!" +
-        "<break time='3.5s'/> Well, Captain, we were able to weather the storm.";
+        "<break time='2.5s'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-audio/Storm-CD.mp3'/>" + "Well, Captain, we were able to weather the storm. ";
         
         if (stormAction1 == "reefsails"){
             //perfect run
             playerRP += 1;      
-            speech +=  "You were amazing Captain! I was sure that rumors of your skill had been somewhat exaggerated." +
+            speech +=  "You were amazing Captain! I was sure that rumors of your skill had been somewhat exaggerated. " +
             "But you certainly upheld your reputation. The crew was greatly impressed too!";
         }
         else if (stormAction1 == "layahull"){
             //solid run
             playerRP += 1;      
-            speech += "<break time='1.5s'/> Great work Captain! The ship took no damage, and I think the crew was impressed.";            
+            speech += "<break time='1.5s'/> Great work Captain! The ship took no damage, and I think the crew was impressed. ";            
         }
         else{
-            speech += "<break time='1.5s'/> Not too shabby. We only took a little damage and the crew survived. We'll do better next time.";
+            speech += "<break time='1.5s'/> Not too shabby. We only took a little damage and the crew survived. We'll do better next time. ";
         }
         //add time passing sound
         speech += "The men have finished their meals and are on deck having drinks. They are sure to start singing and dancing soon. Would you like to join them?";
@@ -852,21 +854,30 @@ function handleEvent103(intentName, session, callback) {
     if ("AMAZON.NoIntent" === intentName){
         globalcurrentEventIndex = 200;
         
-        speech = "Very good sir. I hope that you rest well.<break time='1.5s'/>Goodnight";
+        speech = "Very good sir. I hope that you rest well.<break time='1.5s'/>Goodnight. <audio src='https://s3.amazonaws.com/dead-bots-dialogue/WaterWithBell-CD.mp3'/>";
         
         //Add first questions from next chapter
-        speech += "";
+        speech += "Good morning captain. Ah, the calm after the storm. I'm pleased to report We're back on schedule. " + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington04-TheRift-CD.mp3'/>" +
+        "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington05-Outrun-CD.mp3'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart04-Brace-CD.mp3'/>" +
+        "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley04-Strategic-CD.mp3'/>" +
+        "What say you captain? Should we prepare to outrun them <break time='.2s'/>  prepare to brace for impact, or position for attack? ";
             callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
-    }else if ("AMAZON.YesIntent" === intentName){
+            buildSSMLSpeechlet(CARD_TITLE, speech, "", false));
+    } 
+    else if ("AMAZON.YesIntent" === intentName){
         globalcurrentEventIndex = 104;
         playerRP += 1;   
                     
-        speech = "I'm sure it will be great fun! I wonder what song they are singing." +
-        //add sound clip
-        //[Audio File]+
-        "<break time='1.5s'/> Oh, it's 'Ten Thousand Miles Away'!" +
+        speech = "I'm sure it will be great fun! I wonder what song they are singing. " +
+        "<break time='1.5s'/> Oh, it's Ten Thousand Miles Away!" +
         "Shall we sing along?";
+        
+            callback(session.attributes,
+            buildSSMLSpeechlet(CARD_TITLE, speech, "", false));
+    }
+    else{
+        globalcurrentEventIndex = 103;
+        speech = "I can't hear you over the singing, should we sing along?";
         
             callback(session.attributes,
             buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
@@ -881,14 +892,14 @@ function handleEvent104(intentName, session, callback) {
         speech = "OK. We'll just listen" +
                 //add sound clip
         //[Audio File]+
-        "That was fun! I suppose we'd best rest for tomorrow. Who knows what the new day will bring. I hope that you rest well Captain." + 
+        "That was fun! I suppose we'd best rest for tomorrow. Who knows what the new day will bring. I hope that you rest well Captain. " + 
         "Good morning captain. Ah, the calm after the storm. I'm pleased to report We're back on schedule. " + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington04-TheRift-CD.mp3'/>" +
         "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington05-Outrun-CD.mp3'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart04-Brace-CD.mp3'/>" +
         "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley04-Strategic-CD.mp3'/>" +
         "What say you captain? Should we prepare to outrun them <break time='.2s'/>  prepare to brace for impact, or position for attack? ";
 
         //Inert first scene from next chapter
-        speech += "";
+        //speech += "";
             callback(session.attributes,
         buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }
@@ -897,14 +908,14 @@ function handleEvent104(intentName, session, callback) {
         playerRP += 2;   
         //add sound clip
         //speech = [Audio File]+
-        speech = "That was so much fun! I suppose we'd best rest for tomorrow. Who knows what the new day will bring. I hope that you rest well Captain." +
+        speech = "That was so much fun! I suppose we'd best rest for tomorrow. Who knows what the new day will bring. I hope that you rest well Captain. " +
         "Good morning captain. Ah, the calm after the storm. I'm pleased to report We're back on schedule. " + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington04-TheRift-CD.mp3'/>" +
         "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Carrington05-Outrun-CD.mp3'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Flockhart04-Brace-CD.mp3'/>" +
         "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Bramley04-Strategic-CD.mp3'/>" +
         "What say you captain? Should we prepare to outrun them <break time='.2s'/>  prepare to brace for impact, or position for attack? ";
 
         //Inert first scene from next chapter
-        speech += "";
+        //speech += "";
         
             callback(session.attributes,
             buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
@@ -921,19 +932,19 @@ function handleEvent104(intentName, session, callback) {
 function handleEvent200(intentName, session, callback) { 
         var speech;
         if ("OutrunIntent" === intentName){
-            speech = "Aye aye captain!" + "[Sound effect sail]";
+            speech = "Aye aye captain!" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/SailSlap-CD.mp3'/>";
 
             if (playerRP + shipSpeed > 11){
                 globalcurrentEventIndex = 300;
                 speech += "Captain, they're using split-shot. They're not trying to sink us,"+ 
-                "they're trying to disable us. They must want our cargo." + "[Sound effects crash]" +
-                "We're putting up a hell of a fight. I think if we stick with what we're doing we'll succeed." +
-                "[sound effects crashing] The Cry of the Rift is retreating! A rousing victory, Sir!" +
-                "[sound effect cheering]";
+                "they're trying to disable us. They must want our cargo. " + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Cannonfirewithimpact-CD.mp3/>" +
+                "We're putting up a hell of a fight. I think if we stick with what we're doing we'll succeed. " +
+                "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Cannonfire-CD.mp3'/>" + "The Cry of the Rift is retreating! A rousing victory, Sir!" +
+                "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Crowdcheering-CD.mp3'/>";
             }
             else{
                 globalcurrentEventIndex = 205;
-                speech += "It's not working." + "[Sound effect crash]" + "Captain we should surrender." + 
+                speech += "It's not working. " + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Cannonfirewithimpact-CD.mp3/>" + "Captain we should surrender. " + 
                 "It’s a lost cause. Do you want to surrender?";
             }
 
@@ -942,18 +953,18 @@ function handleEvent200(intentName, session, callback) {
             buildSSMLSpeechlet(CARD_TITLE, speech, "", false));
     }
     else if ("BraceIntent" === intentName){
-        speech = "Aye aye captain!" + "[Sound effect crash]";
+        speech = "Aye aye captain!" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Cannonfirewithimpact-CD.mp3/>";
             if (playerRP + shipDefense > 11){
                 globalcurrentEventIndex = 300;
                 speech += "Captain, they're using split-shot. They're not trying to sink us,"+ 
-                "they're trying to disable us. They must want our cargo." + "[Sound effects crash]" +
-                "We're putting up a hell of a fight. I think if we stick with what we're doing we'll succeed." +
-                "[sound effects crashing] The Cry of the Rift is retreating! A rousing victory, Sir!" +
-                "[sound effect cheering]";
+                "they're trying to disable us. They must want our cargo. " + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Cannonfirewithimpact-CD.mp3/>" +
+                "We're putting up a hell of a fight. I think if we stick with what we're doing we'll succeed. " +
+                "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Cannonfire-CD.mp3'/>" + "The Cry of the Rift is retreating! A rousing victory, Sir!" +
+                "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Crowdcheering-CD.mp3'/>";
             }
             else{
                 globalcurrentEventIndex = 205;
-                speech += "It's not working." + "[Sound effect crash]" + "Captain we should surrender." + 
+                speech += "It's not working. " + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Cannonfirewithimpact-CD.mp3/>" + "Captain we should surrender. " + 
                 "It’s a lost cause. Do you want to surrender?";
             }
 
@@ -962,19 +973,19 @@ function handleEvent200(intentName, session, callback) {
         callback(session.attributes,
             buildSSMLSpeechlet(CARD_TITLE, speech, "", false));
     }
-    else if ("FireIntent" === intentName){
-            speech = "Aye aye captain!" + "[Sound effect cannon fire]";
+    else if ("AttackIntent" === intentName){
+            speech = "Aye aye captain!" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Cannonfire-CD.mp3'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Cannonfirewithimpact-CD.mp3'/>";
            if (playerRP + shipAttack > 11){
                 globalcurrentEventIndex = 300;
                 speech += "Captain, they're using split-shot. They're not trying to sink us,"+ 
-                "they're trying to disable us. They must want our cargo." + "[Sound effects crash]" +
-                "We're putting up a hell of a fight. I think if we stick with what we're doing we'll succeed." +
-                "[sound effects crashing] The Cry of the Rift is retreating! A rousing victory, Sir!" +
-                "[sound effect cheering]";
+                "they're trying to disable us. They must want our cargo. " + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Cannonfirewithimpact-CD.mp3/>" +
+                "We're putting up a hell of a fight. I think if we stick with what we're doing we'll succeed. " +
+                "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Cannonfire-CD.mp3'/>" + "The Cry of the Rift is retreating! A rousing victory, Sir!" +
+                "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Crowdcheering-CD.mp3'/>";
             }
             else{
                 globalcurrentEventIndex = 205;
-                speech += "It's not working." + "[Sound effect crash]" + "Captain we should surrender." + 
+                speech += "It's not working. " + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Cannonfirewithimpact-CD.mp3/>" + "Captain we should surrender. " + 
                 "It’s a lost cause. Do you want to surrender?";
             }
 
@@ -985,9 +996,9 @@ function handleEvent200(intentName, session, callback) {
         //Game over
         //globalcurrentEventIndex = 204;
         callback(session.attributes,
-            buildSpeechletResponseWithoutCard("[Sound Sad Music]" + "We're all dying. We're all dead. " + 
-                "You're not a very good captain." + "<break time='0.5s'/>" + 
-                "Thank you for playing Dead Bots Tell No Tales. You got the It's Kind of Crap ending." , "", true));
+            buildSpeechletResponseWithoutCard("<audio src='https://s3.amazonaws.com/dead-bots-dialogue/WeAreAllDead-CD.mp3'/>" + "We're all dying. We're all dead. " + 
+                "You're not a very good captain. " + "<break time='0.5s'/>" + 
+                "Thank you for playing Dead Bots Tell No Tales. You got the It's Kind of Crap ending. " , "", true));
     }
 }
 
@@ -997,15 +1008,15 @@ function handleEvent201(intentName, session, callback) {
         globalcurrentEventIndex = 300;
         callback(session.attributes,
             buildSSMLSpeechlet(CARD_TITLE, "Captain, they're using split-shot. They're not trying to sink us,"+ 
-                "they're trying to disable us. They must want our cargo." + "[Sound effects crash]" +
-                "We're putting up a hell of a fight. I think if we stick with what we're doing we'll succeed." +
+                "they're trying to disable us. They must want our cargo. " + "[Sound effects crash]" +
+                "We're putting up a hell of a fight. I think if we stick with what we're doing we'll succeed. " +
                 "[sound effects crashing] The Cry of the Rift is retreating! A rousing victory, Sir!" +
                 "[sound effect cheering]", "", false));
     }
     else{
         globalcurrentEventIndex = 205;
         callback(session.attributes,
-            buildSSMLSpeechlet(CARD_TITLE,"It's not working." + "[Sound effect crash]" + "Captain we should surrender." + 
+            buildSSMLSpeechlet(CARD_TITLE,"It's not working. " + "[Sound effect crash]" + "Captain we should surrender. " + 
                 "It’s a lost cause. Do you want to surrender?", "", false));
     }
 }
@@ -1016,18 +1027,18 @@ function handleEvent205(intentName,session,callback){
 
     if ("AMAZON.YesIntent" === intentName){
         callback(session.attributes,
-            buildSpeechletResponseWithoutCard("[Sound Effect Music]" + "We're all dying. We're all dead. " + 
-                "You're not a very good captain." + "<break time='0.5s'/>" + 
-                "Thank you for playing Dead Bots Tell No Tales. You got the It's Kind of Crap ending.", "", true));
+            buildSpeechletResponseWithoutCard("<audio src='https://s3.amazonaws.com/dead-bots-dialogue/WeAreAllDead-CD.mp3'/>" + "We're all dying. We're all dead. " + 
+                "You're not a very good captain. " + "<break time='0.5s'/>" + 
+                "Thank you for playing Dead Bots Tell No Tales. You got the It's Kind of Crap ending. ", "", true));
     }
         else if ("AMAZON.NoIntent" === intentName){
         callback(session.attributes,
-            buildSpeechletResponseWithoutCard("I'll be with you until the end!" + "[Sound effect shouts]" +
-            "<break time='0.5s'/>" + "We're being boarded, Sir! What terrible turn of events." + 
-            "We've put up a good fight, and I'll continue to stand by you. At arms sailors! We won't let them take us without a fight!" + 
-            "Captain! Look out!" + "[Gun Shot]" + "Captain, my captain, I'm so sorry I can't protect you any longer." +
-            "[SAD MUSIC]" + "Please fight on. It's been a pleasure sailing with you." + "<break time='0.5s'/>" + 
-            "Thank you for playing Dead Bots Tell No Tales. You got the Dead Bots Tell No Tales ending.", "", true));
+            buildSpeechletResponseWithoutCard("I'll be with you until the end!" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Angrymob-CD.mp3'/>" +
+            "<break time='0.5s'/>" + "We're being boarded, Sir! What terrible turn of events. " + 
+            "We've put up a good fight, and I'll continue to stand by you. At arms sailors! We won't let them take us without a fight!" + "<audio src='https://s3.amazonaws.com/dead-bots-audio/Boarded-CD.mp3'/>" +
+            "Captain! Look out!" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/Gunfire2-CD.mp3'/>" + "Captain, my captain, I'm so sorry I can't protect you any longer. " +
+            "<audio src='https://s3.amazonaws.com/dead-bots-audio/Cough-CD.mp3'/>" + "Please fight on. It's been a pleasure sailing with you. <audio src='https://s3.amazonaws.com/dead-bots-audio/Deathrattle-CD.mp3'/>" + "<audio src='https://s3.amazonaws.com/dead-bots-dialogue/AHeroicDeath-CD.mp3'/>" + "<break time='0.5s'/>" + 
+            "Thank you for playing Dead Bots Tell No Tales. You got the Oh My God You Killed Alexa ending. How could you?", "", true));
     }else{
         globalcurrentEventIndex = 205;
         callback(session.attributes,
