@@ -10,6 +10,9 @@ AttackIntent fire cannon
 AttackIntent fire cannons
 AttackIntent fire the cannons
 AttackIntent cannons
+AttackIntent position for attack
+AttackIntent position to attack
+AttackIntent prepare for attack
 
 DefendIntent defend
 DefendIntent defense
@@ -190,6 +193,11 @@ FireIntent fight
 FireIntent I want to open fire
 FireIntent I want to fire on them
 FireIntent I give the order to fire on them
+FireIntent attack
+FireIntent attack them
+FireIntent prepare to attack
+FireIntent prepare to fire
+FireIntent position for attack
 
 EscapeIntent escape
 EscapeIntent make our escape
