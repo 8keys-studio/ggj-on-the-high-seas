@@ -18,6 +18,10 @@ DefendIntent defend
 DefendIntent defense
 DefendIntent brace
 DefendIntent take cover
+DefendIntent prepare to defend
+DefendIntent brace for impact
+DefendIntent prepare to brace
+DefendIntent prepare our defense
 
 EvadeIntent evade
 EvadeIntent evasive maneuver
@@ -226,4 +230,9 @@ TakedownIntent I want to take them down
 TakedownIntent we should take them down
 
 SurrenderIntent surrender
+SurrenderIntent i surrender
+SurrenderIntent let's surrender
+SurrenderIntent i give up
+SurrenderIntent let's give up
+SurrenderIntent give up
 

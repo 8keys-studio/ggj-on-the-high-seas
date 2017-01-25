@@ -12,7 +12,7 @@ var stormAction2 = "";
 var notUnderstood = "I'm sorry, captain. I didn't understand your orders. Let me try again. ";
 var notUnderstoodArray = ["Come again, Captain? ", "Speak up, Captain, the waves are loud. ", "Seriously, I didn’t get that. "];
 var lastQuestion = "Which one is our ship?  Is it the Xebec, a masterful balance of speed and strength? Popular for a cargo mission such as ours?";
-
+b
 exports.handler = function (event, context) {
 
     try {
@@ -721,7 +721,7 @@ function handleEvent101(intentName, session, callback) {
         callback(session.attributes,
             buildSSMLSpeechlet(CARD_TITLE,speech,"", false));
     }
-    else if ("LayAhull" === intentName){
+    else if ("LayAhullIntent" === intentName){
         globalcurrentEventIndex = 102;
         stormAction1 = "layahull";
         playerRP += 1;      
