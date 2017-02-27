@@ -7,6 +7,8 @@
 
 */
 'use strict';
+// var Alexa = require('alexa-sdk');
+// const APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
 
 var CARD_TITLE = "GGJ";
 // var session.attributes.globalcurrentEventIndex = 0;
@@ -22,6 +24,11 @@ var notUnderstoodArray = ["Come again, Captain? ", "Speak up, Captain, the waves
 var lastQuestion = "Which one is our ship?  Is it the Xebec, a masterful balance of speed and strength? Popular for a cargo mission such as ours?";
 
 exports.handler = function (event, context) {
+
+    var alexa = Alexa.handler(event, context);
+    // alexa.registerHandlers(lifeCycleHandlers, applicationHandlers);
+    // alexa.dynamoDBTableName = "DeadSave";
+    // alexa.execute();
 
     try {
         console.log("event.session.application.applicationId=" + event.session.application.applicationId);
