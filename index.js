@@ -1,3 +1,11 @@
+//TO DO:
+/*
+
+- get session variables from db
+- code loading save into OnLaunch 
+
+
+*/
 'use strict';
 
 var CARD_TITLE = "GGJ";
@@ -60,7 +68,11 @@ function onLaunch(launchRequest, session, callback) {
     console.log("onLaunch requestId=" + launchRequest.requestId
         + ", sessionId=" + session.sessionId);
 
-    getWelcomeResponse(callback);
+    var sessionExists = false;
+
+    if (!(sessionExists)) {
+        getWelcomeResponse(callback);
+    }
 }
 
 function getWelcomeResponse(callback) {
